@@ -1,7 +1,7 @@
 // Service worker: lets the app open and work without internet.
 // Pages are fetched network-first, so index.html updates arrive on their own.
 // Bump VERSION when the icons or manifest change so installed apps refresh them.
-const VERSION = 'v1';
+const VERSION = 'v2';
 const CACHE = 'kanji-no-tankyuu-' + VERSION;
 const SHELL = [
   './',
@@ -10,7 +10,9 @@ const SHELL = [
   './icons/icon-192.png',
   './icons/icon-512.png',
   './icons/maskable-512.png',
-  './icons/apple-touch-icon.png'
+  './icons/apple-touch-icon.png',
+  './icons/favicon.png',
+  './icons/logo.png'
 ];
 
 self.addEventListener('install', e => {
