@@ -1,0 +1,19 @@
+{
+  "name": "Kanji no Tankyuu · 漢字の探求",
+  "short_name": "Kanji no Tankyuu",
+  "description": "Estudia los kanjis del JLPT con un árbol de sakura que florece contigo.",
+  "lang": "es",
+  "id": "./",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#fff6f8",
+  "theme_color": "#fff6f8",
+  "categories": ["education"],
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icons/maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

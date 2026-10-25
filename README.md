@@ -14,7 +14,7 @@ App web para estudiar los 170 kanjis del JLPT N4. Es un solo archivo (`index.htm
 El progreso se guarda en el navegador (`localStorage`).
 
 ## Cómo usarla
-Abre `index.html` en el navegador. Para publicarla gratis, activa GitHub Pages en el repositorio (Settings → Pages → rama `main`, carpeta `/root`).
+Abre `index.html` en el navegador. Publicada en internet (Vercel o GitHub Pages) también se puede instalar como app (PWA) y funciona sin conexión: en Android o Chrome con el botón «Instalar app», en iPhone con Compartir → Agregar a inicio. Los cambios de `index.html` llegan solos la próxima vez que se abra con internet; si cambias los iconos, sube `VERSION` en `sw.js`. Para publicarla gratis, activa GitHub Pages en el repositorio (Settings → Pages → rama `main`, carpeta `/root`).
 
 ## Datos y créditos
 - Lista de kanjis basada en kanjikana.com (JLPT N4, por trazos). Lecturas, significados en español, vocabulario y radicales escritos a mano: conviene revisarlos con un diccionario.
