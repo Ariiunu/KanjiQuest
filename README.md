@@ -1,4 +1,4 @@
-# 🌸 Kanji Quest
+# Kanji no Tankyuu · 漢字の探求
 
 App web para estudiar los 170 kanjis del JLPT N4. Es un solo archivo (`index.html`), sin instalación ni dependencias de compilación: se abre directo en el navegador.
 
@@ -8,6 +8,7 @@ App web para estudiar los 170 kanjis del JLPT N4. Es un solo archivo (`index.htm
 - **Repaso:** flashcards con repaso espaciado, escribir la lectura, completar la palabra, emparejar, dibujar de memoria y quiz estilo JLPT.
 - **Biblioteca:** filtros por grupo, trazos y estado (no visto / visto / aprendido), con selección múltiple.
 - **Inicio:** árbol de sakura que florece con cada kanji aprendido y kanji del día con orden de trazos animado.
+- **Diseño:** versión para PC (barra lateral) y para celular (barra inferior), con iconos propios en vez de emojis.
 - **Logros:** 15 sellos estilo hanko.
 
 El progreso se guarda en el navegador (`localStorage`).
