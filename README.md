@@ -3,6 +3,10 @@
 App web para estudiar japonés en tres niveles, cada uno con su propio progreso: **かな** (los 213 hiragana y katakana, con tenten, combinados y extendidos), **JLPT N5** (79 kanjis) y **JLPT N4** (170 kanjis). Es un solo archivo (`index.html`), sin instalación ni dependencias de compilación: se abre directo en el navegador.
 
 ## Qué incluye
+- **Niveles como camino:** Nivel 0 かな (empieza aquí), Nivel 1 N5 y Nivel 2 N4.
+- **Estudiar hoy:** un botón en el inicio arma la sesión sola: primero los repasos pendientes (repaso espaciado con todos los ejercicios) y después algo nuevo (una lección de kana o 5 kanjis nuevos).
+- **Lecciones de kana:** 40 lecciones de unos 5 kana cada una (trazo, sonido y mini quiz con solo lo que ya conoces) y tarjetas de reglas (tenten, maru, combinados, っ pequeña, vocales largas, katakana).
+- **Audio:** voz japonesa del dispositivo (por ejemplo Kyoko en iPhone y Mac) en fichas, palabras y el ejercicio «Escucha y elige».
 - **Panorama:** recorrido de todo el nivel agrupado por concepto, con orden de trazos y radicales (método del organizador previo).
 - **Aprender:** grupos por concepto o 4 mundos por cantidad de trazos (en かな: hiragana, hiragana +, katakana, katakana +).
 - **Repaso:** dificultad fácil / normal / difícil; repaso mixto, flashcards con repaso espaciado, escribir la lectura, completar la palabra, arma el kanji (radicales), construye la palabra, emparejar, contrarreloj, dibujar de memoria y quiz estilo JLPT. Las rondas priorizan lo que fallaste y lo que llevas más tiempo sin ver, y hay un modo para repasar los fallos.
