@@ -338,6 +338,7 @@ const rawKana=`あ|a|あめ ame lluvia;あさ asa mañana;あおい aoi azul
 ひゅ|hyu|ひゅうひゅう hyuuhyuu silbido-del-viento
 ひょ|hyo|ひょう hyou granizo
 みゃ|mya|みゃく myaku pulso
+みゅ|myu|みゅうみゅう myuumyuu maullido-de-gatito
 みょ|myo|みょうじ myouji apellido
 りゃ|rya|りゃくご ryakugo abreviatura
 りゅ|ryu|りゅう ryuu dragón
@@ -411,6 +412,8 @@ const rawKana=`あ|a|あめ ame lluvia;あさ asa mañana;あおい aoi azul
 ゼ|ze|ゼロ zero cero;プレゼント purezento regalo
 ゾ|zo|ゾンビ zonbi zombi;アマゾン amazon Amazonas
 ダ|da|ダンス dansu baile;サラダ sarada ensalada
+ヂ|ji|チヂミ chijimi panqueque-coreano
+ヅ|zu|ヅラ zura peluca-(coloquial)
 デ|de|デザイン dezain diseño;モデル moderu modelo
 ド|do|ドア doa puerta;ドラマ dorama serie
 バ|ba|バス basu autobús;バナナ banana plátano
@@ -435,19 +438,27 @@ const rawKana=`あ|a|あめ ame lluvia;あさ asa mañana;あおい aoi azul
 ニャ|nya|ニャー nyaa miau
 ニュ|nyu|ニュース nyuusu noticias
 ニョ|nyo|ニョッキ nyokki ñoquis
+ヒャ|hya|ヒャッホー hyahhoo ¡yuju!
 ヒュ|hyu|ヒューズ hyuuzu fusible
 ヒョ|hyo|ヒョウ hyou leopardo
 ミャ|mya|ミャンマー myanmaa Birmania
 ミュ|myu|ミュージカル myuujikaru musical
+ミョ|myo|ミョウガ myouga jengibre-japonés
+リャ|rya|リャマ ryama llama-(animal)
 リュ|ryu|リュック ryukku mochila
+リョ|ryo|リョーカイ ryookai ¡entendido!-(en-chats)
 ギャ|gya|ギャラリー gyararii galería
 ギュ|gyu|レギュラー regyuraa titular
 ギョ|gyo|ギョーザ gyooza gyoza
 ジャ|ja|ジャム jamu mermelada;ジャケット jaketto chaqueta
 ジュ|ju|ジュース juusu jugo
 ジョ|jo|ジョギング jogingu trotar
+ビャ|bya|ビャクダン byakudan sándalo
 ビュ|byu|インタビュー intabyuu entrevista
+ビョ|byo|ビョーン byoon ¡boing!-(onomatopeya)
+ピャ|pya|ピャッ pya ¡zas!-(onomatopeya)
 ピュ|pyu|コンピューター konpyuutaa computadora
+ピョ|pyo|ピョンヤン pyonyan Pyongyang
 ヴ|vu|ヴァイオリン vaiorin violín
 ファ|fa|ファン fan aficionado;ソファ sofa sofá
 フィ|fi|フィルム firumu película-fotográfica

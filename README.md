@@ -1,6 +1,6 @@
 # Kanji no Tankyuu · 漢字の探求
 
-App web para estudiar japonés en tres niveles, cada uno con su propio progreso: **かな** (los 213 hiragana y katakana, con tenten, combinados y extendidos), **JLPT N5** (79 kanjis) y **JLPT N4** (170 kanjis). No necesita instalación ni compilación: se abre directo en el navegador.
+App web para estudiar japonés en tres niveles, cada uno con su propio progreso: **かな** (los 224 hiragana y katakana, con tenten, combinados y extendidos), **JLPT N5** (79 kanjis) y **JLPT N4** (170 kanjis). No necesita instalación ni compilación: se abre directo en el navegador.
 
 ## Qué incluye
 - **Niveles como camino:** Nivel 0 かな (empieza aquí), Nivel 1 N5 y Nivel 2 N4.
