@@ -74,9 +74,9 @@ function appTest() {
       if (ref.length >= 3) { const m = u.slice(); m.splice(1, 1); if (dGrade(m, ref).cnt !== -1) errs.push('trazo faltante sin aviso: ' + k.k); } }
     seen.dibujo = n; } catch (e) { errs.push('dibujo: ' + e.message); }
   // JLPT-style practice (kanji levels): sentences, ordering, reading, listening and the mock exam
-  if (!KN) for (const m of ['jvocab', 'jorder', 'jread', 'jlisten', 'jexam']) for (let r = 0; r < 5; r++) {
+  if (!KN) for (const m of ['jvocab', 'jorder', 'jread', 'jlisten', 'jexam', ...(GR.length ? ['jgram'] : [])]) for (let r = 0; r < 5; r++) {
     try {
-      pStart(m); const p = V.ps; seen[m] = (seen[m] || 0) + 1; rounds++;
+      if (m === 'jgram') V.gids = null; pStart(m); const p = V.ps; seen[m] = (seen[m] || 0) + 1; rounds++;
       if (!p.items.length) errs.push('sin preguntas en ' + m);
       play(p, m); render(); clearInterval(V.et);
       if (!document.body.innerHTML.includes(m === 'jexam' ? 'Otro simulacro' : 'Otra ronda')) errs.push('sin pantalla final en ' + m);

@@ -2,7 +2,7 @@
 // The app's own files (page, styles, scripts, manifest) are fetched network-first, so updates
 // arrive on their own; icons and Google Fonts are served from the saved copy first.
 // Bump VERSION when the list below changes so installed apps refresh their saved copy.
-const VERSION = 'v4';
+const VERSION = 'v5';
 const CACHE = 'kanji-no-tankyuu-' + VERSION;
 const SHELL = [
   './',
@@ -11,6 +11,7 @@ const SHELL = [
   './data.js',
   './strokes.js',
   './jlpt.js',
+  './grammar.js',
   './app.js',
   './manifest.webmanifest',
   './icons/icon-192.png',

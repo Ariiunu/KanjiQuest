@@ -781,3 +781,13 @@ body{overflow-x:clip}
 .pdays i{align-self:end;display:block;width:70%;margin:0 auto;min-height:3px;border-radius:6px 6px 2px 2px;background:var(--ind)}.pdays b{font-size:12px}.pdays span{font-size:12px;color:var(--mut);text-transform:capitalize}
 .phard{display:flex;flex-wrap:wrap;gap:6px}.phard button{font:inherit;display:grid;justify-items:center;gap:2px;min-width:64px;padding:8px 10px;border-radius:14px;border:1px solid var(--card2);background:var(--card);color:var(--ink);cursor:pointer}
 .phard b{font-family:"Shippori Mincho",serif;font-size:1.5rem}.phard span{font-size:12px;color:var(--mut);max-width:80px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+/* Gramática */
+.lseg{max-width:100%;overflow-x:auto;scrollbar-width:none}.lseg::-webkit-scrollbar{display:none}.lseg button{white-space:nowrap}
+.gsum{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin:6px 0 10px}.gsum b{font-family:"Shippori Mincho",serif;font-size:1.3rem;color:var(--gold)}
+.gram .gp{display:block;font-family:"Shippori Mincho",serif;font-size:1.15rem}.gram .pl{cursor:pointer}
+.gblank{display:inline-block;min-width:3.2em;border-bottom:2px solid var(--btn);color:var(--btn)}
+.gpt{margin:8px 0 0;font-size:.9rem}.gpt .btn.link{font-size:.85rem;padding:0 0 0 4px}
+.gdet h2{font-family:"Shippori Mincho",serif;font-size:1.6rem;margin:0 0 2px}.gdet .gmean{margin:0 0 8px;font-weight:700;color:var(--gold)}.gdet .ph3{margin:14px 0 4px}.gdet p{margin:4px 0}
+#mbox:has(.gdet){max-height:86vh;overflow:auto;text-align:left;max-width:560px}
+.lseg button{padding-left:12px;padding-right:12px}
