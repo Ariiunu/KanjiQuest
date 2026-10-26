@@ -257,3 +257,38 @@ q:[['このへやは広いです（　）、ちょっと暗いです。','が','
 ex:[['ひまなとき、何をしますか。','ひまなとき、なにをしますか。','¿Qué haces cuando estás libre?'],['子どものとき、よく川で遊びました。','こどものとき、よくかわであそびました。','Cuando era niño, jugaba seguido en el río.']],
 q:[['こまった（　）、いつでも電話してください。','とき','から','まで','より','Cuando tengas un problema, llámame cuando quieras.'],['学生（　）とき、毎日テニスをしました。','の','な','に','で','Cuando era estudiante, jugaba tenis todos los días.'],['ひま（　）とき、本を読みます。','な','の','に','だ','Cuando estoy libre, leo libros.']]}
 ];
+
+// 文の組み立て (★): [antes, [los 4 pedazos en orden correcto], después, posición de la ★ (0-3), traducción]
+const GSTAR5 = [
+['わたしは',['顔を','あらって','ごはんを','食べてから'],'学校へ行きます。',2,'Me lavo la cara, como y después voy al colegio.'],
+['あの',['めがねを','かけて','いる','人が'],'田中さんです。',2,'La persona que lleva lentes es Tanaka.'],
+['きのう',['友だちと','いっしょに','見た','映画は'],'とてもおもしろかったです。',2,'La película que vi ayer con un amigo fue muy entretenida.'],
+['日本へ',['行く','まえに','日本語を','勉強しました'],'。',2,'Antes de ir a Japón, estudié japonés.'],
+['この',['店の','ケーキは','安くて','おいしい'],'です。',2,'Los pasteles de esta tienda son baratos y ricos.'],
+['雨が',['ふって','いる','から','かさを'],'持って行きましょう。',2,'Como está lloviendo, llevemos paraguas.'],
+['母は',['わたしに','セーターを','作って','くれました'],'。',2,'Mi mamá me hizo un chaleco.'],
+['あそこで',['テニスを','して','いる','のは'],'兄です。',2,'El que está jugando tenis allá es mi hermano mayor.'],
+['わたしは',['コーヒー','より','お茶の','ほうが'],'好きです。',2,'Me gusta más el té que el café.'],
+['クラスで',['だれが','いちばん','背が','高い'],'ですか。',3,'¿Quién es el más alto de la clase?'],
+['休みの日は',['そうじ','を','したり','せんたくをしたり'],'します。',2,'En los días libres hago cosas como limpiar y lavar ropa.'],
+['ここに',['名前と','電話','番号を','書いて'],'ください。',2,'Escribe aquí tu nombre y tu número de teléfono, por favor.']];
+const GSTAR4 = [
+['日本に',['行った','ことが','ある','人は'],'手をあげてください。',2,'Las personas que han ido a Japón, levanten la mano.'],
+['つかれたら',['少し','休んで','も','いい'],'ですよ。',2,'Si te cansas, puedes descansar un poco.'],
+['あしたまでに',['この','レポートを','書かなければ','なりません'],'。',2,'Tengo que escribir este informe antes de mañana.'],
+['雨が',['ふりそう','だから','かさを','持って'],'行きます。',2,'Parece que va a llover, así que llevo paraguas.'],
+['かぜを',['ひいた','ときは','早く','ねた'],'ほうがいいですよ。',2,'Cuando te resfrías, es mejor acostarse temprano.'],
+['先生に',['作文の','まちがいを','直して','もらいました'],'。',2,'El profesor me corrigió los errores de la redacción.'],
+['音楽を',['聞き','ながら','勉強する','のが'],'好きです。',2,'Me gusta estudiar mientras escucho música.'],
+['この',['くつは','はき','やすくて','軽い'],'です。',2,'Estos zapatos son cómodos de poner y livianos.'],
+['電気を',['つけた','まま','ねて','しまいました'],'。',2,'Me quedé dormido con la luz prendida.'],
+['来年から',['日本の','会社で','働く','ことに'],'しました。',2,'Decidí trabajar en una empresa japonesa desde el próximo año.'],
+['毎日',['れんしゅう','した','から','およげる'],'ようになりました。',2,'Como practiqué todos los días, llegué a poder nadar.'],
+['弟に',['大切な','ケーキを','食べられて','しまいました'],'。',2,'Mi hermano menor se comió mi pastel tan preciado.']];
+// 文章の文法: texto con ［1］［2］［3］; q: [correcta, distractor×3] por espacio
+const GPASS5 = [
+{ti:'わたしの しゅみ',t:'わたしは りょうりが 好きです。日曜日［1］、家族の ために ばんごはんを 作ります。先週は カレーを 作りました。とても おいしかった［2］、母が「また 作って」と 言いました。来週は すしを 作って［3］と 思います。',q:[['に','を','が','で'],['ので','のに','ても','まで'],['みよう','みます','みた','みて']],es:'Me gusta cocinar. Los domingos hago la cena para mi familia. La semana pasada hice curry. Quedó muy rico, así que mi mamá me dijo «hazlo otra vez». La próxima semana pienso intentar hacer sushi.'},
+{ti:'デパートで',t:'きのう、友だちと デパートへ 買い物に 行きました。わたしは 白い シャツが ほしかったです［1］、いい シャツが ありませんでした。友だちは かわいい かばん［2］ 買いました。そのあと、きっさてんで ケーキを 食べ［3］、話したり しました。',q:[['が','から','ので','と'],['を','が','に','で'],['たり','て','ても','ながら']],es:'Ayer fui de compras a la tienda con una amiga. Quería una camisa blanca, pero no había ninguna buena. Mi amiga compró una bolsa bonita. Después, en un café comimos pastel y conversamos.'}];
+const GPASS4 = [
+{ti:'日本語の 勉強',t:'わたしは 去年から 日本語を 勉強して います。はじめは ひらがなも 読めません［1］が、今は かんたんな 本なら 読める［2］ なりました。毎日 少しずつ 勉強する［3］ して います。',q:[['でした','です','だった','ました'],['ように','ことに','ために','そうに'],['ように','ことに','ために','ばかり']],es:'Estudio japonés desde el año pasado. Al principio no podía leer ni hiragana, pero ahora llegué a poder leer libros simples. Procuro estudiar un poco cada día.'},
+{ti:'パーティー',t:'先週の 土曜日、友だちの 家で パーティーが ありました。わたしは ケーキを 作って 持って行く［1］でしたが、時間が なくて 作れませんでした。それで、駅の 近くの 店で 買って［2］。友だちは「おいしい！」と 言って［3］、うれしかったです。',q:[['つもり','ばかり','まま','ほど'],['行きました','くれました','もらいました','あげました'],['くれて','あげて','もらって','やって']],es:'El sábado pasado hubo una fiesta en la casa de una amiga. Pensaba hacer un pastel y llevarlo, pero no tuve tiempo y no pude. Así que lo compré en una tienda cerca de la estación y lo llevé. Mi amiga dijo «¡qué rico!» y me puse feliz.'}];
