@@ -1,0 +1,10 @@
+{
+  "name": "kanji-no-tankyuu",
+  "private": true,
+  "type": "module",
+  "description": "Funciones del servidor (carpeta api/) para los recordatorios diarios. La app en sí no necesita instalar nada.",
+  "dependencies": {
+    "@upstash/redis": "1.34.3",
+    "web-push": "3.6.7"
+  }
+}

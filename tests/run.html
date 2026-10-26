@@ -33,9 +33,10 @@ function appTest() {
       let ok;
       if (m === 'type') { render(); document.getElementById('ti').value = it.v.r; tChk(); ok = p.a === true; }
       else if (m === 'draw') { dRate(2); continue; }
+      else if (it.kind === 'order') { render(); [0, 1, 2, 3].forEach(oTap); ok = p.a === true; }
       else if (m === 'build') { [...it.v.w].forEach(c => bTap(it.t.findIndex((t, i) => t === c && !p.sel.includes(i)))); ok = p.a === true; }
-      else { if (it.o.length < 2 || it.c < 0 || new Set(it.o).size !== it.o.length) errs.push('opciones raras en ' + m + ' ' + it.k.k); chAns(it.c); ok = p.a === it.c; }
-      if (!ok) errs.push('respuesta correcta marcada mal: ' + m + ' ' + it.k.k);
+      else { if (it.o.length < 2 || it.c < 0 || new Set(it.o).size !== it.o.length) errs.push('opciones raras en ' + m + ' ' + (it.k ? it.k.k : it.tag)); chAns(it.c); ok = p.a === it.c; }
+      if (!ok) errs.push('respuesta correcta marcada mal: ' + m + ' ' + (it.k ? it.k.k : it.tag));
       pNext();
     }
   };
@@ -64,11 +65,21 @@ function appTest() {
       }
     }
   }
+  // JLPT-style practice (kanji levels): sentences, ordering, reading, listening and the mock exam
+  if (!KN) for (const m of ['jvocab', 'jorder', 'jread', 'jlisten', 'jexam']) for (let r = 0; r < 5; r++) {
+    try {
+      pStart(m); const p = V.ps; seen[m] = (seen[m] || 0) + 1; rounds++;
+      if (!p.items.length) errs.push('sin preguntas en ' + m);
+      play(p, m); render(); clearInterval(V.et);
+      if (!document.body.innerHTML.includes(m === 'jexam' ? 'Otro simulacro' : 'Otra ronda')) errs.push('sin pantalla final en ' + m);
+      if (m === 'jexam' && !document.body.innerHTML.includes('Aprobarías')) errs.push('simulacro perfecto sin aprobar');
+    } catch (e) { errs.push(m + ': ' + e.message); }
+  }
   try { go('fc'); for (let i = 0; i < 5 && V.fc.q.length; i++) { V.fc.flip = true; render(); rate('good'); } } catch (e) { errs.push('flashcards: ' + e.message); }
   if (!KN) { try { V.qz = null; go('qz'); qzStart(); } catch (e) { errs.push('quiz: ' + e.message); } }
   // games: rain until game over, memory until solved, then back to the menu
   try {
-    go('games'); gStart('rain'); let p = V.ps, n = 0;
+    go('games'); gStart('rain'); if (!V.ps.ready) errs.push('lluvia sin pantalla de inicio'); rainGo(); let p = V.ps, n = 0;
     while (!p.fin && n++ < 60) { if (n < 10) rainHit(p.cur.c); else rainHit((p.cur.c + 1) % p.cur.o.length); clearTimeout(V.rt); if (!p.fin) rainNext(); }
     if (!p.fin || p.sc <= 0) errs.push('lluvia no terminó bien');
     gStart('mem'); p = V.ps;

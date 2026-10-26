@@ -2,7 +2,7 @@
 // The app's own files (page, styles, scripts, manifest) are fetched network-first, so updates
 // arrive on their own; icons and Google Fonts are served from the saved copy first.
 // Bump VERSION when the list below changes so installed apps refresh their saved copy.
-const VERSION = 'v3';
+const VERSION = 'v4';
 const CACHE = 'kanji-no-tankyuu-' + VERSION;
 const SHELL = [
   './',
@@ -10,6 +10,7 @@ const SHELL = [
   './styles.css',
   './data.js',
   './strokes.js',
+  './jlpt.js',
   './app.js',
   './manifest.webmanifest',
   './icons/icon-192.png',
@@ -56,4 +57,21 @@ self.addEventListener('fetch', e => {
 
   // Everything else (icons, Google Fonts): saved copy first, then network, saving what arrives.
   e.respondWith(caches.match(req).then(hit => hit || fetch(req).then(res => save(req, res))));
+});
+
+// Daily reminder sent by the server (api/cron.js): show it, and open the app when it's tapped.
+self.addEventListener('push', e => {
+  let d = {};
+  try { d = e.data.json(); } catch (_) { d = { body: e.data ? e.data.text() : '' }; }
+  e.waitUntil(self.registration.showNotification(d.title || 'Kanji no Tankyuu', {
+    body: d.body || '', icon: './icons/icon-192.png', badge: './icons/favicon.png', tag: 'recordatorio', data: { url: d.url || './' }
+  }));
+});
+
+self.addEventListener('notificationclick', e => {
+  e.notification.close();
+  e.waitUntil(self.clients.matchAll({ type: 'window', includeUncontrolled: true }).then(ws => {
+    const w = ws.find(x => 'focus' in x);
+    return w ? w.focus() : self.clients.openWindow(e.notification.data.url);
+  }));
 });

@@ -1,0 +1,14 @@
+# Calls the reminder every hour so each student gets it at the hour they chose.
+# Needs, in the repository's Settings → Secrets and variables → Actions:
+#   secret CRON_SECRET (the same value as in Vercel) and variable APP_URL (e.g. https://kanji-quest.vercel.app)
+name: Recordatorio diario
+on:
+  schedule:
+    - cron: '5 * * * *'
+  workflow_dispatch:
+jobs:
+  avisar:
+    if: ${{ vars.APP_URL != '' }}
+    runs-on: ubuntu-latest
+    steps:
+      - run: curl -fsS -H "Authorization: Bearer ${{ secrets.CRON_SECRET }}" "${{ vars.APP_URL }}/api/cron"

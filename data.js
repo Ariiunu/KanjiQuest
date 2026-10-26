@@ -251,11 +251,11 @@ const raw5=`一|1|イチ・イツ|ひと-つ|uno|one|一つ ひとつ uno;一月
 高|10|コウ|たか-い|alto, caro|tall, expensive|高い たかい alto;高校 こうこう bachillerato|Una torre alta
 長|8|チョウ|なが-い|largo, jefe|long|長い ながい largo;社長 しゃちょう presidente-de-empresa|El pelo largo de un anciano
 白|5|ハク|しろ|blanco|white|白い しろい blanco;面白い おもしろい interesante`;
-const rawKana=`あ|a|あめ ame lluvia;あさ asa mañana
+const rawKana=`あ|a|あめ ame lluvia;あさ asa mañana;あおい aoi azul
 い|i|いぬ inu perro;いえ ie casa
-う|u|うみ umi mar;うし ushi vaca
-え|e|えき eki estación;えんぴつ enpitsu lápiz
-お|o|おちゃ ocha té;おかし okashi dulces
+う|u|うみ umi mar;うし ushi vaca;うえ ue arriba
+え|e|えき eki estación;えんぴつ enpitsu lápiz;いえ ie casa
+お|o|おちゃ ocha té;おかし okashi dulces;あおい aoi azul
 か|ka|かさ kasa paraguas;かお kao cara
 き|ki|きた kita norte;きって kitte sello
 く|ku|くち kuchi boca;くつ kutsu zapatos
