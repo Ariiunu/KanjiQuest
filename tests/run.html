@@ -44,7 +44,7 @@ function appTest() {
   if (KN) { while (nextLesson() && lessonsDone < 100) { startLesson(nextLesson().id); play(V.ps, 'lesson'); lessonsDone++; } }
   try { startToday(); play(V.ps, 'today'); } catch (e) { errs.push('Estudiar hoy: ' + e.message); }
   let rounds = 0;
-  const modes = ['mix', 'listen', 'type', 'fill', 'parts', 'build', 'match', 'draw', 'speed'];
+  const modes = ['mix', 'listen', 'type', 'fill', 'parts', 'build', 'match', 'draw', 'speed', 'sim'];
   for (const d of [0, 1, 2]) {
     S.dif = d;
     const scopes = KN ? lessons().map(L => () => { V.lsel = [L.id]; }) : G.map((g, i) => () => { V.g = i; });
