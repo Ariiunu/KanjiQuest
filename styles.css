@@ -670,6 +670,18 @@ button:focus:not(:focus-visible){outline:none}
 .route2{max-width:760px}
 /* motion: a short entrance when the screen changes, and petals when a lesson is completed */
 #app.enter{animation:scr .32s cubic-bezier(.16,1,.3,1)}
-@keyframes scr{from{opacity:.4;transform:translateY(8px)}to{opacity:1;transform:none}}
+@keyframes scr{from{transform:translateY(10px)}to{transform:none}}
 .lend{position:relative;overflow:hidden;isolation:isolate}.lend .petals svg{width:16px}
 @media (prefers-reduced-motion:reduce){#app.enter{animation:none}}
+
+/* Repaso (kana): choose rows of the table */
+.kmode{margin:0 0 12px}
+.rpick{display:grid;gap:12px;margin:0 0 16px}
+.rscr{display:flex;gap:6px}.rscr button{font:inherit;font-size:.85rem;font-weight:700;color:var(--mut);background:none;border:0;border-bottom:2px solid transparent;padding:4px 6px;cursor:pointer}.rscr button.on{color:var(--gold);border-color:var(--gold)}
+.rgrp{display:grid;gap:6px}.rgrp>.mut{font-size:.8rem;font-weight:700}
+.rrows{display:flex;flex-wrap:wrap;gap:6px}
+.rrows button{font:inherit;font-family:"Shippori Mincho",serif;font-weight:800;font-size:1.05rem;letter-spacing:.06em;color:var(--ink);background:var(--card);border:1px solid var(--card2);border-radius:12px;padding:7px 11px;cursor:pointer;transition:transform .2s cubic-bezier(.16,1,.3,1)}
+.rrows button:hover{transform:translateY(-1px)}.rrows button.new{border-style:dashed}
+.rrows button.on{background:var(--ind);border-color:var(--ind);border-style:solid;color:#fff}
+.rsum{font-size:.82rem;margin:0;display:flex;align-items:center;gap:8px;flex-wrap:wrap}.rsum .btn.link{font-size:.82rem;padding:0}
+:root[data-theme=dark] .rrows button{background:var(--card);color:var(--ink)}:root[data-theme=dark] .rrows button.on{background:var(--ind);color:#2a1220}

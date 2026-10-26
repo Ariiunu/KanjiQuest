@@ -65,6 +65,9 @@ function appTest() {
       }
     }
   }
+  // kana: practise chosen rows of the table (katakana "ka" row + hiragana "kya" row), questions only from those rows
+  if (KN) { try { V.tab = 'fc'; rpick(TROWS[1][0][1][1].join(',')); rpick(TROWS[0][2][1][0].join(',')); const ks = pp().map(x => x.k); if (ks.length !== 8) errs.push('filas: ' + ks.length + ' kana');
+    pStart('mix'); if (V.ps.items.some(it => !ks.includes(it.k.k))) errs.push('filas: pregunta fuera de las filas'); play(V.ps, 'mix'); rpick(); seen.filas = 1; } catch (e) { errs.push('filas: ' + e.message); } }
   // JLPT-style practice (kanji levels): sentences, ordering, reading, listening and the mock exam
   if (!KN) for (const m of ['jvocab', 'jorder', 'jread', 'jlisten', 'jexam']) for (let r = 0; r < 5; r++) {
     try {
