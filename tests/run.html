@@ -66,6 +66,16 @@ function appTest() {
   }
   try { go('fc'); for (let i = 0; i < 5 && V.fc.q.length; i++) { V.fc.flip = true; render(); rate('good'); } } catch (e) { errs.push('flashcards: ' + e.message); }
   if (!KN) { try { V.qz = null; go('qz'); qzStart(); } catch (e) { errs.push('quiz: ' + e.message); } }
+  // games: rain until game over, memory until solved, then back to the menu
+  try {
+    go('games'); gStart('rain'); let p = V.ps, n = 0;
+    while (!p.fin && n++ < 60) { if (n < 10) rainHit(p.cur.c); else rainHit((p.cur.c + 1) % p.cur.o.length); clearTimeout(V.rt); if (!p.fin) rainNext(); }
+    if (!p.fin || p.sc <= 0) errs.push('lluvia no terminó bien');
+    gStart('mem'); p = V.ps;
+    for (let i = 0; i < p.cards.length / 2; i++) { const js = p.cards.map((c, j) => c.i === i ? j : -1).filter(j => j >= 0); memFlip(js[0]); memFlip(js[1]); }
+    if (!p.fin) errs.push('memoria no terminó');
+    gMenu(); if (!document.querySelector('.gcard')) errs.push('sin menú de juegos');
+  } catch (e) { errs.push('juegos: ' + e.message); }
   for (const t of ['home', 'ov', 'grp', 'map', 'lib', 'ach', 'lvl']) { try { go(t); } catch (e) { errs.push('pantalla ' + t + ': ' + e.message); } }
   return { lv: LV, items: K.length, lessonsDone, rounds, modes: seen, errs };
 }

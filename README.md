@@ -10,7 +10,8 @@ App web para estudiar japonés en tres niveles, cada uno con su propio progreso:
 - **Fichas que se arrastran:** con el mouse o el dedo, en panorama, lecciones y flashcards.
 - **Panorama:** recorrido de todo el nivel agrupado por concepto, con orden de trazos y radicales (método del organizador previo).
 - **Aprender:** en kanji, grupos por concepto o 4 mundos por cantidad de trazos; en かな, lecciones y reglas.
-- **Repaso:** dificultad fácil / normal / difícil; repaso mixto, escucha y elige, flashcards, escribir la lectura, completar la palabra, arma el kanji (radicales), construye la palabra, emparejar, contrarreloj, dibujar de memoria y quiz estilo JLPT. Las rondas priorizan lo que fallaste y lo que llevas más tiempo sin ver. En かな se practica todo lo visto o las lecciones que elijas.
+- **Juegos:** Lluvia (responde antes de que el kana o kanji toque el suelo; vidas, combos y niveles), Memoria (parejas), Contrarreloj y Empareja, con récords. Usan lo que ya viste en el nivel.
+- **Repaso:** dificultad fácil / normal / difícil; repaso mixto, escucha y elige, flashcards, escribir la lectura, completar la palabra, arma el kanji (radicales), construye la palabra, dibujar de memoria y quiz estilo JLPT. Las rondas priorizan lo que fallaste y lo que llevas más tiempo sin ver. En かな se practica todo lo visto o las lecciones que elijas.
 - **Biblioteca:** filtros por grupo, trazos y estado (no visto / visto / aprendido), con selección múltiple. En かな muestra las tablas de hiragana y katakana.
 - **Inicio:** árbol de sakura que florece con cada kanji aprendido y kanji (o kana) del día.
 - **Logros:** calendario de racha con los días estudiados, 15 sellos estilo hanko y ajustes (apariencia y sonidos).
