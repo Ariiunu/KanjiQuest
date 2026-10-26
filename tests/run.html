@@ -104,6 +104,13 @@ function appTest() {
     for (let i = 0; i < 40; i++) { if (p.o.length !== 4 || p.o.some(x => !x) || new Set(p.o).size !== 4) errs.push('cuál no va con cartas malas'); oddPick(p.c); clearTimeout(V.rt); oddRound(); }
     p.t0 -= 1e6; clearInterval(V.tm); p.fin = true; gRec('odd', p.sc); render(); if (!document.body.innerHTML.includes('40 aciertos')) errs.push('cuál no va sin puntaje');
     clearInterval(V.tm);
+    // Sopa de letras: every hidden word reads right in the grid and the game ends when all are found (3 difficulties)
+    for (const d of [0, 1, 2]) { S.dif = d; gStart('sopa'); sopaGo(); p = V.ps;
+      if (p.words.length < 4) errs.push('sopa con pocas palabras: ' + p.words.length);
+      if (p.words.some(w => w.cells.map(([r, c]) => p.g[r][c]).join('') !== w.w)) errs.push('sopa: palabra mal escrita en la cuadrícula');
+      p.words.forEach(w => { sopaTap(...w.cells[0]); sopaTap(...w.cells[w.cells.length - 1]); });
+      if (!p.fin) errs.push('sopa no terminó'); }
+    S.dif = 1;
     // games with your own selection: only the chosen rows (kana) or groups (kanji)
     S.gsel = KN ? [TROWS[0][0][1][1].join(','), TROWS[1][0][1][2].join(',')] : ['0', '1']; const sel = gCustom().map(x => x.k);
     if (sel.length < 6 || gPool().some(x => !sel.includes(x.k))) errs.push('juegos: la selección no se respeta');

@@ -744,3 +744,16 @@ select,input,textarea{max-width:100%}
 .scope{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.scope select{flex:1 1 12rem;min-width:0;width:auto}
 @media(max-width:899px){select,input,textarea{font-size:16px!important}}
 body{overflow-x:clip}
+
+/* Sopa de letras */
+.g8{background:linear-gradient(140deg,#ffe9ef,#f7c5d6)}
+.sopag{display:grid;grid-template-columns:repeat(var(--n),1fr);gap:4px;max-width:min(460px,100%);margin:0 auto;touch-action:manipulation;user-select:none;-webkit-user-select:none}
+.sopag .sx{aspect-ratio:1;min-width:0;padding:0;border:1px solid var(--card2);border-radius:10px;background:var(--card);font-family:"Shippori Mincho",serif;font-weight:800;font-size:clamp(1rem,5.2vw,1.45rem);color:var(--ink);cursor:pointer;-webkit-tap-highlight-color:transparent}
+.sopag .sx.sel{background:var(--btn);border-color:var(--btn);color:#fff}
+.sopag .sx.f0{background:#d9f3e6;border-color:#9ad8b8}.sopag .sx.f1{background:#ffe2c9;border-color:#f5b98a}.sopag .sx.f2{background:#e6dcf7;border-color:#bfa8e6}.sopag .sx.f3{background:#d6ecfb;border-color:#9ccaee}.sopag .sx.f4{background:#fde0ea;border-color:#f2a7bf}
+.sopah{text-align:center;margin:10px 0 6px;font-size:.88rem}
+.sopaw{display:grid;gap:6px;max-width:460px;margin:0 auto}.sopaw>div{padding:8px 12px;border-radius:12px;background:var(--card);border:1px solid var(--card2);font-size:.92rem}
+.sopaw>div.d{opacity:.7;text-decoration:line-through;text-decoration-color:var(--mut)}.sopaw b{font-family:"Shippori Mincho",serif;font-size:1.1rem}
+.sopal{max-width:460px;margin:12px auto 0}.sopal p{margin:4px 0}
+:root[data-theme=dark] .sopag .sx.f0,:root[data-theme=dark] .sopag .sx.f1,:root[data-theme=dark] .sopag .sx.f2,:root[data-theme=dark] .sopag .sx.f3,:root[data-theme=dark] .sopag .sx.f4{color:#2a1220}
+:root[data-theme=dark] .sopag .sx.sel{background:var(--ind);color:#2a1220}
