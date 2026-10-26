@@ -22,7 +22,7 @@ App web para estudiar japonés en tres niveles, cada uno con su propio progreso:
 - **Modo claro y oscuro:** se cambia con el botón de luna o sol del inicio (en PC, en la barra lateral) o desde Ajustes. Empieza en claro.
 - **Diseño:** versión para PC (barra lateral) y para celular (barra inferior).
 
-El progreso se guarda en el navegador (`localStorage`), por separado para cada nivel.
+El progreso se guarda en el navegador (`localStorage`), por separado para cada nivel. Desde Ajustes → «Guardar copia» se descarga un archivo con el progreso de todos los niveles y la racha; con «Recuperar copia» se carga en otro celular o navegador (muestra qué trae la copia antes de reemplazar nada).
 
 ## Archivos
 - `index.html`: la página.

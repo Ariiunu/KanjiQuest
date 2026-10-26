@@ -685,3 +685,9 @@ button:focus:not(:focus-visible){outline:none}
 .rrows button.on{background:var(--ind);border-color:var(--ind);border-style:solid;color:#fff}
 .rsum{font-size:.82rem;margin:0;display:flex;align-items:center;gap:8px;flex-wrap:wrap}.rsum .btn.link{font-size:.82rem;padding:0}
 :root[data-theme=dark] .rrows button{background:var(--card);color:var(--ink)}:root[data-theme=dark] .rrows button.on{background:var(--ind);color:#2a1220}
+
+/* copia de seguridad en Ajustes */
+.srow2.bak{align-items:flex-start;border-top:1px solid var(--card2);padding-top:12px}.srow2.bak>span{display:grid;gap:3px;flex:1 1 14rem}.srow2.bak small{font-size:.78rem;line-height:1.4}
+.bakb{display:flex;gap:6px;flex-wrap:wrap}.bakb .btn{font-size:.85rem;padding:8px 12px}
+.bakcmp{display:grid;gap:8px}.bakcmp>div{display:grid;gap:2px;padding:10px 12px;border-radius:14px;background:var(--bg);border:1px solid var(--card2)}.bakcmp span{font-size:.88rem;color:var(--mut)}
+.srow2.bak{text-align:left}.srow2.bak>span{justify-items:start}
