@@ -85,6 +85,17 @@ function appTest() {
     gStart('mem'); p = V.ps;
     for (let i = 0; i < p.cards.length / 2; i++) { const js = p.cards.map((c, j) => c.i === i ? j : -1).filter(j => j >= 0); memFlip(js[0]); memFlip(js[1]); }
     if (!p.fin) errs.push('memoria no terminó');
+    // Atrapa: tap only the target until time runs out; しりとり: chain correct words; ¿Cuál no va?: pick the odd one
+    gStart('whack'); whackGo(); p = V.ps; for (let i = 0; i < 40; i++) { whackTick(); const j = p.cells.findIndex(c => c && c.k === p.tg); if (j >= 0) whackHit(j); }
+    p.t0 -= 1e6; whackTick(); if (!p.fin || p.sc <= 0) errs.push('atrapa no terminó bien');
+    gStart('shiri'); shiriGo(); p = V.ps;
+    for (let i = 0; i < 30 && !p.fin; i++) { const need = shLast(p.cur), g = p.o[p.c]; if (shFirst(g) !== need || p.o.filter(w => shFirst(w) === need).length !== 1) errs.push('しりとり con opciones malas'); shiriPick(p.c); clearTimeout(V.rt); p.cur = g; p.used.add(g.w); shiriRound(); }
+    for (let i = 0; i < 3 && !p.fin; i++) { shiriPick((p.c + 1) % 4); clearTimeout(V.rt); if (p.lives > 0) shiriRound(); else { p.fin = true; gRec('shiri', p.best); } }
+    render(); if (!p.fin || !document.body.innerHTML.includes('Cadena de')) errs.push('しりとり no terminó');
+    gStart('odd'); oddGo(); p = V.ps;
+    for (let i = 0; i < 40; i++) { if (p.o.length !== 4 || p.o.some(x => !x) || new Set(p.o).size !== 4) errs.push('cuál no va con cartas malas'); oddPick(p.c); clearTimeout(V.rt); oddRound(); }
+    p.t0 -= 1e6; clearInterval(V.tm); p.fin = true; gRec('odd', p.sc); render(); if (!document.body.innerHTML.includes('40 aciertos')) errs.push('cuál no va sin puntaje');
+    clearInterval(V.tm);
     gMenu(); if (!document.querySelector('.gcard')) errs.push('sin menú de juegos');
   } catch (e) { errs.push('juegos: ' + e.message); }
   for (const t of ['home', 'ov', 'grp', 'map', 'lib', 'ach', 'lvl']) { try { go(t); } catch (e) { errs.push('pantalla ' + t + ': ' + e.message); } }

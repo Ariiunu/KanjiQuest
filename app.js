@@ -401,14 +401,81 @@ const GAMES=[
 ['rain','雨','Lluvia',()=>`${KN?'Los kana':'Los kanjis'} caen: responde antes de que toquen el suelo. 3 vidas.`,()=>S.hs.rain?`Récord: ${S.hs.rain} pts`:'Sin récord todavía','g1'],
 ['mem','記','Memoria',()=>`Da vuelta las cartas y encuentra las parejas: ${KN?'kana y su lectura':'kanji y su significado'}.`,()=>S.hs.mem?`Mejor tiempo: ${S.hs.mem} s`:'Sin récord todavía','g2'],
 ['speed','速','Contrarreloj',()=>`¿Sí o no? Todo lo que puedas en ${df().t} segundos.`,()=>S.bsp?`Récord: ${S.bsp} aciertos`:'Sin récord todavía','g3'],
-['match','対','Empareja',()=>`Une cada ${KN?'kana':'kanji'} con su pareja lo más rápido posible.`,()=>S.hs.match?`Mejor tiempo: ${S.hs.match} s`:'Sin récord todavía','g4']];
+['match','対','Empareja',()=>`Une cada ${KN?'kana':'kanji'} con su pareja lo más rápido posible.`,()=>S.hs.match?`Mejor tiempo: ${S.hs.match} s`:'Sin récord todavía','g4'],
+['whack','捕','Atrapa',()=>`Los ${KN?'kana':'kanjis'} asoman y se esconden: toca solo el que te piden. ${WT} segundos.`,()=>S.hs.whack?`Récord: ${S.hs.whack} pts`:'Sin récord todavía','g5'],
+['shiri','連','しりとり',()=>'Encadena palabras: la siguiente empieza con el último kana de la anterior.',()=>S.hs.shiri?`Récord: cadena de ${S.hs.shiri}`:'Sin récord todavía','g6'],
+['odd','異','¿Cuál no va?',()=>`Cuatro ${KN?'kana':'kanjis'}, uno no pertenece al grupo. Encuéntralo en ${OT} segundos.`,()=>S.hs.odd?`Récord: ${S.hs.odd} aciertos`:'Sin récord todavía','g7']];
 function gamesV(){const p=V.ps;
-if(V.gm&&p&&p.m===V.gm){if(p.m==='rain')return rainV();if(p.m==='mem')return memV();if(p.m==='speed')return speedV();if(p.m==='match'){if(p.fin&&!p.saved){p.saved=1;p.t=Math.max(1,p.t);if(!S.hs.match||p.t<S.hs.match){S.hs.match=p.t;p.rec=1;fanfare()}save()}return matchV()+(p.fin&&p.rec?'<p class="grec">¡Nuevo récord!</p>':'')}}
+if(V.gm&&p&&p.m===V.gm){if(p.m==='rain')return rainV();if(p.m==='mem')return memV();if(p.m==='whack')return whackV();if(p.m==='shiri')return shiriV();if(p.m==='odd')return oddV();if(p.m==='speed')return speedV();if(p.m==='match'){if(p.fin&&!p.saved){p.saved=1;p.t=Math.max(1,p.t);if(!S.hs.match||p.t<S.hs.match){S.hs.match=p.t;p.rec=1;fanfare()}save()}return matchV()+(p.fin&&p.rec?'<p class="grec">¡Nuevo récord!</p>':'')}}
 const n=gPool().length;
 return`<p class="mut" style="margin:-4px 0 12px">Practica jugando con lo que ya viste: <b>${n}</b> ${KN?'kana':'kanjis'}.</p><div class="hrow"><div class="seg">${DF.map((d,i)=>`<button class="${S.dif===i?'on':''}" onclick="S.dif=${i};save();render()">${d.n}</button>`).join('')}</div></div><div class="ggrid">${GAMES.map(g=>`<button class="gcard ${g[5]}" onclick="gStart('${g[0]}')"><span class="gglyph">${g[1]}</span><b>${g[2]}</b><span class="gdesc">${g[3]()}</span><span class="gbest">${ic('trophy',14,'currentColor','none')} ${g[4]()}</span><span class="gplay">Jugar</span></button>`).join('')}</div>`}
 function gStart(m){clearTimeout(V.rt);V.tab='games';V.gm=m;V.gpool=gPool();if(m==='speed'||m==='match'){pStart(m);window.scrollTo(0,0);return}
 if(m==='rain'){V.rm='rain';V.ps={m:'rain',lives:3,sc:0,cb:0,lv:1,ok:0,dur:[7000,5600,4600][S.dif],fin:false,id:0,ready:true};render()}
-if(m==='mem')memStart();window.scrollTo(0,0)}
+if(m==='mem')memStart();if(['whack','shiri','odd'].includes(m)){V.rm=m;V.ps={m,ready:true};render()}window.scrollTo(0,0)}
+
+// shared screens for the newer games: a ready screen and the end screen with the record
+const gReady=(g,t,go)=>back()+`<div class="box gover"><div class="gglyph big" lang="ja">${g}</div><h2>¿Listo?</h2><p class="mut">${t}</p><button class="btn pri big" onclick="${go}">Empezar ${AR()}</button></div>`;
+const gEnd=(g,big,sub,rec,again)=>back()+`<div class="box gover"><div class="gglyph big" lang="ja">${g}</div><h2>${big}</h2><p class="mut">${sub}</p>${rec}<p><button class="btn pri" onclick="gStart('${again}')">Otra vez</button> <button class="btn" onclick="gMenu()">Juegos</button></p></div>`;
+function gRec(key,v,lower){const p=V.ps;if(p.saved)return;p.saved=1;if(v>0&&(!S.hs[key]||(lower?v<S.hs[key]:v>S.hs[key]))){S.hs[key]=v;p.rec=1;setTimeout(fanfare,250)}save()}
+const recH=(key,txt)=>V.ps.rec?'<p class="grec">¡Nuevo récord!</p>':`<p class="mut">${txt(S.hs[key]||0)}</p>`;
+
+// Atrapa: kana/kanji pop up in a 3×3 grid; tap only the one asked for
+const WT=40;
+function whackGo(){const p=V.ps;Object.assign(p,{ready:false,sc:0,cb:0,hits:0,miss:0,cells:Array(9).fill(null),t0:Date.now(),fx:{}});whackTarget();clearInterval(V.tm);V.tm=setInterval(whackTick,250);render()}
+function whackTarget(){const p=V.ps,pool=V.gpool,old=p.tg;let k;do{k=pool[Math.random()*pool.length|0]}while(pool.length>1&&k===old);p.tg=k;p.th=0}
+function whackTick(){const p=V.ps;if(!p||p.m!=='whack'||V.tab!=='games'||p.fin){clearInterval(V.tm);return}const now=Date.now(),life=[1700,1350,1050][S.dif];
+if(now-p.t0>=WT*1000){p.fin=true;clearInterval(V.tm);gRec('whack',p.sc);render();return}
+p.cells=p.cells.map(c=>c&&c.until>now?c:null);const empty=p.cells.map((c,j)=>c?-1:j).filter(j=>j>=0),hasT=p.cells.some(c=>c&&c.k===p.tg);
+if(empty.length&&Math.random()<.55){const j=empty[Math.random()*empty.length|0],sim=x=>x===p.tg||(KN?snd(x)===snd(p.tg):gLab(x)===gLab(p.tg)),dec=V.gpool.filter(x=>!sim(x)),k=!hasT&&Math.random()<.6||!dec.length?p.tg:dec[Math.random()*dec.length|0];p.cells[j]={k,until:now+life*(.8+Math.random()*.5)}}
+render()}
+function whackHit(j){const p=V.ps;if(!p||p.m!=='whack'||p.fin||p.ready)return;const c=p.cells[j];if(!c)return;const ok=c.k===p.tg;p.cells[j]=null;p.fx={j,ok,t:Date.now()};
+if(ok){p.cb++;p.hits++;p.sc+=10*(1+Math.floor(p.cb/5));ding(Math.min(p.cb-1,8));rec(c.k.k,true,false);if(++p.th>=4)whackTarget()}else{boop();p.cb=0;p.miss++;p.sc=Math.max(0,p.sc-5)}render()}
+function whackV(){const p=V.ps;if(p.ready)return gReady('捕',`Arriba aparece lo que tienes que atrapar: ${KN?'un sonido, como «ka»':'un significado'}. Toca solo ${KN?'ese kana':'ese kanji'} cuando asome; los demás restan puntos. Cada 4 aciertos cambia el objetivo. Tienes ${WT} segundos.`,'whackGo()');
+if(p.fin)return gEnd('捕',p.sc+' puntos',`${p.hits} atrapados · ${p.miss} errores · ${df().n}`,recH('whack',v=>'Récord: '+v+' pts'),'whack');
+const left=Math.max(0,WT*1000-(Date.now()-p.t0)),fx=p.fx&&Date.now()-p.fx.t<350?p.fx:{},mult=1+Math.floor(p.cb/5);
+return back()+`<div class="ghud"><span>${Math.ceil(left/1000)} s</span><span><b>${p.sc}</b> pts${mult>1?` <i class="gmult">×${mult}</i>`:''}</span></div><div class="wtg">Atrapa <b ${KN?'':'lang="es"'}>${KN?p.tg.es:gLab(p.tg)}</b></div><div class="wgrid">${p.cells.map((c,j)=>`<button class="whole ${c?'up':''} ${fx.j===j?(fx.ok?'hit':'bad'):''}" ${c?'':'tabindex="-1" aria-hidden="true"'} onpointerdown="event.preventDefault();whackHit(${j})" onclick="if(!event.detail)whackHit(${j})"><span lang="ja">${c?c.k.k:''}</span></button>`).join('')}</div>`}
+
+// しりとり: chain words; the next one starts with the last kana of the previous one (readings in kana)
+const toH=x=>[...x].map(c=>{const n=c.charCodeAt(0);return n>=0x30a1&&n<=0x30f6?String.fromCharCode(n-0x60):c}).join('');
+const SMK={ぁ:'あ',ぃ:'い',ぅ:'う',ぇ:'え',ぉ:'お',ゃ:'や',ゅ:'ゆ',ょ:'よ',っ:'つ',ゎ:'わ'};
+const shLast=w=>{const x=toH(w.kana).replace(/ー+$/,''),c=x[x.length-1];return SMK[c]||c},shFirst=w=>toH(w.kana)[0];
+let SHW=null;const shWords=()=>SHW||(SHW=(()=>{const seen=new Set();return K.flatMap(k=>k.v.map(v=>({k,w:v.w,kana:KN?v.w:v.r,m:v.m}))).filter(x=>/^[ぁ-ゖァ-ヶー]+$/.test(x.kana)&&!seen.has(x.w)&&seen.add(x.w))})());
+const shNext=(w,used)=>shWords().filter(x=>shFirst(x)===shLast(w)&&!used.has(x.w));
+function shiriGo(){const p=V.ps,W=shWords(),start=sh(W.filter(w=>shLast(w)!=='ん'&&shNext(w,new Set([w.w])).length));Object.assign(p,{ready:false,lives:3,chain:0,best:0,used:new Set([start[0].w]),cur:start[0],a:null,hist:[]});shiriRound()}
+function shiriRound(){const p=V.ps,W=shWords();let c=shNext(p.cur,p.used);
+if(!c.length){const fresh=sh(W.filter(w=>!p.used.has(w.w)&&shLast(w)!=='ん'&&shNext(w,p.used).length));if(!fresh.length){p.fin=true;gRec('shiri',p.best);return render()}toast('No quedan palabras con «'+shLast(p.cur)+'»: empieza una nueva');p.cur=fresh[0];p.hist=[];p.used.add(p.cur.w);c=shNext(p.cur,p.used)}
+const good=sh(c).sort((x,y)=>(shLast(x)==='ん')-(shLast(y)==='ん'))[0],need=shLast(p.cur),wr=sh(W.filter(w=>shFirst(w)!==need&&w.w!==p.cur.w)).filter((w,i,a)=>a.findIndex(z=>shFirst(z)===shFirst(w))===i).slice(0,3);
+p.o=sh([good,...wr]);p.c=p.o.indexOf(good);p.a=null;p.t0=Date.now();p.dur=[15000,10000,7000][S.dif];clearInterval(V.tm);V.tm=setInterval(shiriTick,200);render()}
+function shiriTick(){const p=V.ps;if(!p||p.m!=='shiri'||V.tab!=='games'||p.fin||p.a!==null){clearInterval(V.tm);return}const left=p.dur-(Date.now()-p.t0),b=document.getElementById('shb');if(b)b.style.width=Math.max(0,left/p.dur*100)+'%';if(left<=0)shiriPick(-1)}
+function shiriPick(j){const p=V.ps;if(p.a!==null||p.fin)return;clearInterval(V.tm);p.a=j;const ok=j===p.c,w=p.o[p.c];
+if(ok){p.chain++;p.best=Math.max(p.best,p.chain);ding(Math.min(p.chain-1,8));rec(w.k.k,true,false);p.hist.push(w)}else{boop();p.lives--;p.chain=0;p.hist=[]}
+render();clearTimeout(V.rt);V.rt=setTimeout(()=>{if(V.ps!==p)return;if(p.lives<=0){p.fin=true;gRec('shiri',p.best);return render()}p.cur=w;p.used.add(w.w);shiriRound()},ok?700:1800)}
+const shRead=(w,hl)=>{const x=w.kana,i=x.replace(/ー+$/,'').length-1;return hl?`${x.slice(0,i)}<b class="shl">${x[i]}</b>${x.slice(i+1)}`:x};
+function shiriV(){const p=V.ps;if(p.ready)return gReady('連',`しりとり es un juego de palabras japonés: cada palabra empieza con el último kana de la anterior (ねこ → こども → もも…). Elige la que sigue antes de que se acabe el tiempo. Tienes 3 vidas.`,'shiriGo()');
+if(p.fin)return gEnd('連','Cadena de '+p.best,'Tu cadena más larga · '+df().n,recH('shiri',v=>'Récord: cadena de '+v),'shiri');
+const hearts=[0,1,2].map(i=>ic('heart',22,i<p.lives?'#e8628e':'#d9c3cf',i<p.lives?'#fbd3df':'none')).join(''),cur=p.cur,d=p.a!==null;
+return back()+`<div class="ghud"><span class="ghearts">${hearts}</span><span>Cadena <b>${p.chain}</b></span></div><div class="bar"><i id="shb" style="width:${d?0:100}%;transition:width .2s linear"></i></div>
+<div class="box qcard shcur"><div class="shw" lang="ja">${KN?shRead(cur,1):cur.w}</div>${KN?'':`<div class="shr" lang="ja">${shRead(cur,1)}</div>`}<div class="mut">${cur.m}</div><p class="shq">¿Qué palabra empieza con <b lang="ja">${shLast(cur)}</b>?</p></div>
+<div class="opts shop">${p.o.map((w,j)=>`<button class="opt ${d?(j===p.c?'ok':j===p.a?'bad':'dim'):''}" onclick="shiriPick(${j})" ${d?'disabled':''}><span lang="ja" class="shw2">${w.w}</span>${KN?'':`<small lang="ja">${d?w.kana:''}</small>`}${d?`<small>${w.m}</small>`:''}</button>`).join('')}</div>${p.hist.length>1?`<p class="shhist" lang="ja">${p.hist.slice(-6).map(w=>w.w).join(' → ')}</p>`:''}`}
+
+// ¿Cuál no va?: three share something (concept group for kanji; row, vowel or script for kana), one doesn't
+const OT=60,KROW=['あいうえお','かきくけこ','さしすせそ','たちつてと','なにぬねの','はひふへほ','まみむめも','やゆよ','らりるれろ','わを','がぎぐげご','ざじずぜぞ','だぢづでど','ばびぶべぼ','ぱぴぷぺぽ'];
+// the first n items with a different value of f
+const uniq=(a,f,n)=>{const seen=new Set();return a.filter(x=>!seen.has(f(x))&&seen.add(f(x))).slice(0,n)};
+const kRow=k=>KROW.findIndex(r=>r.includes(toH(k.k))),kVow=k=>k.es.slice(-1);
+function oddRound(){const p=V.ps;let three,odd,why;
+if(KN){const B=K.filter(k=>k.k.length===1&&kRow(k)>=0&&k.k!=='ん'&&k.k!=='ン'),ty=sh(['row','row','vow','scr'])[0],sc=sh([0,1])[0],same=B.filter(k=>kat(k)===!!sc);
+if(ty==='row'){const r=sh([...new Set(same.map(kRow))].filter(r=>same.filter(k=>kRow(k)===r).length>=3))[0];three=sh(same.filter(k=>kRow(k)===r)).slice(0,3);odd=sh(same.filter(k=>kRow(k)!==r))[0];const nm=x=>x===0?'las vocales':'la fila '+K.find(k=>toH(k.k)===KROW[x][0]).es.replace(/[aeiou]$/,'').toUpperCase();why=`${three.map(x=>x.k).join(' ')} son de ${nm(r)}; ${odd.k} es de ${nm(kRow(odd))}.`}
+else if(ty==='vow'){const v=sh(['a','i','u','e','o'])[0];three=uniq(sh(same.filter(k=>kVow(k)===v)),kRow,3);odd=sh(same.filter(k=>kVow(k)!==v))[0];why=`${three.map(x=>x.k).join(' ')} terminan en «${v}»; ${odd.k} se lee «${odd.es}».`}
+else{three=uniq(sh(same),snd,3);const snds=new Set(three.map(snd));odd=sh(B.filter(k=>kat(k)!==!!sc&&!snds.has(snd(k))))[0];why=`${three.map(x=>x.k).join(' ')} son ${sc?'katakana':'hiragana'}; ${odd.k} es ${sc?'hiragana':'katakana'}.`}}
+else{const gs=sh([...new Set(K.map(k=>k.g))].filter(g=>K.filter(k=>k.g===g).length>=3)),g=gs[0],pref=V.gpool.filter(k=>k.g===g);three=sh(pref.length>=3?pref:K.filter(k=>k.g===g)).slice(0,3);const o2=V.gpool.filter(k=>k.g!==g);odd=sh(o2.length?o2:K.filter(k=>k.g!==g))[0];const gn=x=>G[x][1].replace(/<[^>]+>/g,'').trim();why=`${three.map(x=>x.k).join(' ')}: ${gn(g)}. ${odd.k} (${odd.es.split(',')[0]}): ${gn(odd.g)}.`}
+p.o=sh([...three,odd]);p.c=p.o.indexOf(odd);p.why=why;p.a=null;render()}
+function oddGo(){const p=V.ps;Object.assign(p,{ready:false,sc:0,err:0,t0:Date.now(),pen:0});oddRound();clearInterval(V.tm);V.tm=setInterval(()=>{const q=V.ps;if(!q||q.m!=='odd'||V.tab!=='games'||q.fin){clearInterval(V.tm);return}if(oddLeft()<=0){q.fin=true;clearInterval(V.tm);clearTimeout(V.rt);gRec('odd',q.sc);render()}else{const e=document.getElementById('odt');if(e)e.textContent=Math.ceil(oddLeft()/1000)+' s'}},250)}
+const oddLeft=()=>OT*1000+0-(Date.now()-V.ps.t0)-V.ps.pen;
+function oddPick(j){const p=V.ps;if(p.a!==null||p.fin)return;p.a=j;const ok=j===p.c;if(ok){p.sc++;ding(Math.min(p.sc-1,8));rec(p.o[p.c].k,true,false)}else{boop();p.err++;p.pen+=5000}render();clearTimeout(V.rt);V.rt=setTimeout(()=>{if(V.ps===p&&!p.fin)oddRound()},ok?900:2200)}
+function oddV(){const p=V.ps;if(p.ready)return gReady('異',KN?'Tres kana comparten algo (la misma fila, la misma vocal o el mismo silabario) y uno no. Toca el intruso. Cada error te quita 5 segundos.':'Tres kanjis son del mismo grupo de significado y uno no. Toca el intruso. Cada error te quita 5 segundos.','oddGo()');
+if(p.fin)return gEnd('異',p.sc+(p.sc===1?' acierto':' aciertos'),`${p.err} errores · ${df().n}`,recH('odd',v=>'Récord: '+v+' aciertos'),'odd');const d=p.a!==null;
+return back()+`<div class="ghud"><span id="odt">${Math.ceil(Math.max(0,oddLeft())/1000)} s</span><span><b>${p.sc}</b> ${p.sc===1?'acierto':'aciertos'}</span></div><p class="mut" style="text-align:center;margin:4px 0 12px">¿Cuál no va con los demás?</p><div class="oddg">${p.o.map((k,j)=>`<button class="oddc ${d?(j===p.c?'ok':j===p.a?'bad':'dim'):''}" onclick="oddPick(${j})" ${d?'disabled':''}><span lang="ja">${k.k}</span>${d&&!KN?`<small>${k.es.split(',')[0]}</small>`:d?`<small>${k.es}</small>`:''}</button>`).join('')}</div>${d?`<div class="fbk ${p.a===p.c?'ok':'bad'}" style="margin-top:12px"><b>${p.a===p.c?'¡Exacto!':'Era '+p.o[p.c].k+' (−5 s)'}</b><p style="margin:4px 0 0" lang="ja">${p.why}</p></div>`:''}`}
 
 // Lluvia: one kana/kanji falls at a time; answer before it lands
 const gLab=k=>KN?k.es:S.dif===2?rdc(k):k.es.split(',')[0];
