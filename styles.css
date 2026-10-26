@@ -1,5 +1,5 @@
-/* Kanji no Tankyuu · estilos (el segundo bloque redefine el tema del primero) */
-:root{color-scheme:light;--bg:#fff0f5;--card:#ffffff;--card2:#ffd6e5;--ink:#4a2a38;--mut:#a06a82;--sak:#ff5c8d;--ind:#f0508a;--gold:#c2477a;--ok:#1f9d63;--bad:#e5384f;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+/* Kanji no Tankyuu · estilos. Los colores base están en el primer :root; el modo oscuro los redefine en :root[data-theme=dark] */
+:root{color-scheme:light;--bg:#fff6f8;--card:#fff;--card2:#fbd3df;--ink:#5a2a3d;--mut:#87566c;--sak:#e8628e;--ind:#e8628e;--gold:#b0406b;--ok:#1f9d63;--bad:#e5384f;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);--shadow:0 10px 28px -20px rgba(201,79,122,.45);--r:20px;--btn:#c23a6e;--btn-ink:#fff;accent-color:var(--btn);caret-color:var(--btn);scrollbar-color:var(--card2) transparent}
 html{scroll-padding-top:env(safe-area-inset-top,0px)}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:"Noto Sans JP",system-ui,sans-serif;min-height:100vh}
@@ -45,7 +45,6 @@ select{background:var(--card);color:var(--ink);border:1px solid var(--card2);bor
 #modal .box{max-width:420px;width:100%;max-height:90vh;overflow:auto;text-align:center}
 
 /* --- tema actual --- */
-:root{--bg:#fff6f9;--card:#fff;--card2:#ffe4ee;--ink:#3d2433;--mut:#9b6f85;--sak:#ff6b9a;--ind:#f0508a;--gold:#c2477a;--shadow:0 12px 32px -14px rgba(240,80,138,.35);--r:24px}
 body{font-family:"Zen Maru Gothic","Noto Sans JP",system-ui,sans-serif;background:linear-gradient(160deg,#fff9fb 0%,#ffeaf2 55%,#ffdbe9 100%) fixed;color:var(--ink);letter-spacing:.01em}
 body::before,body::after{content:"";position:fixed;z-index:-1;border-radius:50%;filter:blur(70px);pointer-events:none}
 body::before{width:380px;height:380px;background:#ffc2d9;opacity:.55;top:-100px;right:-80px}
@@ -223,7 +222,6 @@ html{font-size:14.5px}
 .sc b{display:block;font-size:.85rem}
 .sc small{display:block;color:var(--mut);font-size:.72rem;margin-top:3px}
 .sbar{height:6px;border-radius:99px;background:#ffe4ee;overflow:hidden;margin-top:8px}.sbar i{display:block;height:100%;background:var(--sak)}
-:root{--bg:#fff6f8;--card:#fff;--card2:#fbd3df;--ink:#5a2a3d;--mut:#a8758a;--sak:#e8628e;--ind:#e8628e;--gold:#c94f7a;--ok:#1f9d63;--shadow:0 10px 28px -20px rgba(201,79,122,.45);--r:20px}
 body{background:var(--bg);color:var(--ink)}
 body::before,body::after{display:none}
 h1,.top h1{background:none;color:var(--ink);-webkit-text-fill-color:currentColor;font-weight:700;font-size:1.45rem}
@@ -417,10 +415,6 @@ button.chip{font:inherit;color:inherit;cursor:pointer}
 .cal+.box{margin-top:14px}.sets{margin-top:14px;display:grid;gap:10px}.srow2{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}.srow2 .seg{margin:0}
 :root[data-theme=dark]{--bg:#1c1418;--card:#2a1f25;--card2:#45303b;--ink:#f6e7ee;--mut:#c79fb2;--sak:#f07aa0;--ind:#f07aa0;--gold:#f4a3c0;--soft:#3a2630;--shadow:0 10px 26px -18px rgba(0,0,0,.7);color-scheme:dark}
 :root[data-theme=dark] body{background:var(--bg);color:var(--ink)}:root[data-theme=dark] .box,:root[data-theme=dark] .pl,:root[data-theme=dark] .sc,:root[data-theme=dark] .cell,:root[data-theme=dark] .slide,:root[data-theme=dark] .selbar,:root[data-theme=dark] .face,:root[data-theme=dark] .opt,:root[data-theme=dark] .btn,:root[data-theme=dark] .seg,:root[data-theme=dark] .stat,:root[data-theme=dark] .tc,:root[data-theme=dark] .today,:root[data-theme=dark] .dc,:root[data-theme=dark] .lvc,:root[data-theme=dark] .kc,:root[data-theme=dark] .tile,:root[data-theme=dark] .slot,:root[data-theme=dark] .inp,:root[data-theme=dark] select,:root[data-theme=dark] .fbk,:root[data-theme=dark] .rule,:root[data-theme=dark] .chip,:root[data-theme=dark] .lpick button,:root[data-theme=dark] .st3 button,:root[data-theme=dark] .strip button,:root[data-theme=dark] .side,:root[data-theme=dark] .bnav,:root[data-theme=dark] .hero,:root[data-theme=dark] .ktile,:root[data-theme=dark] .cv,:root[data-theme=dark] .mode{background:var(--card)!important;border-color:var(--card2)!important;color:var(--ink)}:root[data-theme=dark] .chip2,:root[data-theme=dark] .lvn,:root[data-theme=dark] .jt,:root[data-theme=dark] .rtag,:root[data-theme=dark] .gic,:root[data-theme=dark] .say,:root[data-theme=dark] .rex span,:root[data-theme=dark] .lvb,:root[data-theme=dark] .dch span,:root[data-theme=dark] .sstreak,:root[data-theme=dark] .pl i,:root[data-theme=dark] .cd{background:var(--soft)!important;border-color:var(--card2)!important;color:var(--gold)}:root[data-theme=dark] .btn.pri,:root[data-theme=dark] .arrow:not(.ghost),:root[data-theme=dark] .nav button.on,:root[data-theme=dark] .lpick button.on,:root[data-theme=dark] .st3 button.on.s2,:root[data-theme=dark] .cd.on,:root[data-theme=dark] .pl.dn i{background:var(--ind)!important;border-color:var(--ind)!important;color:#2a1220!important}:root[data-theme=dark] .seg button.on{background:var(--soft)!important;color:var(--gold)!important}:root[data-theme=dark] .lvb.on{color:#8fe0b8}:root[data-theme=dark] .lvc.off{background:var(--bg)!important}:root[data-theme=dark] .cell.st1,:root[data-theme=dark] .kc.st1{background:#33242c!important}:root[data-theme=dark] .cell.st2,:root[data-theme=dark] .cell.done,:root[data-theme=dark] .kc.st2{background:#3d2633!important;border-color:#f07aa0!important;box-shadow:0 0 0 1.5px #f07aa055!important}:root[data-theme=dark] .opt.ok,:root[data-theme=dark] .slot.ok{background:#173a2a!important;border-color:#34c38a!important;color:#8fe0b8!important}:root[data-theme=dark] .opt.bad,:root[data-theme=dark] .slot.bad{background:#3d1d24!important;border-color:#ff6b7f!important;color:#ff9aa8!important}:root[data-theme=dark] .fbk.ok{background:#173226!important;border-color:#2c6b4c!important}:root[data-theme=dark] .fbk.bad{background:#3a1f27!important;border-color:#7a3446!important}:root[data-theme=dark] .sv path{stroke:#f6e7ee}:root[data-theme=dark] .sv .ghost path{stroke:#4a3340}:root[data-theme=dark] .sv .live path{stroke:#f6e7ee}:root[data-theme=dark] .cv{background:linear-gradient(#45303b,#45303b) center/2px 100% no-repeat,linear-gradient(#45303b,#45303b) center/100% 2px no-repeat,#fff!important}:root[data-theme=dark] .bar,:root[data-theme=dark] .stk,:root[data-theme=dark] .sbar,:root[data-theme=dark] .lvd i{background:var(--soft)}:root[data-theme=dark] .lvd i.on{background:var(--ind)}:root[data-theme=dark] .stamp{background:var(--soft);box-shadow:inset 0 0 0 3px var(--card),inset 0 0 0 4px #7a3d55}:root[data-theme=dark] .stamp.lock{background:var(--bg);border-color:#4a3340;color:#5c4250}:root[data-theme=dark] #modal{background:#0008}:root[data-theme=dark] .big,:root[data-theme=dark] .slide .k,:root[data-theme=dark] .cell b,:root[data-theme=dark] .chip b,:root[data-theme=dark] .kc b{color:var(--ink)}:root[data-theme=dark] .credit{color:#8d6d7d}:root[data-theme=dark] .arrow.ghost{background:var(--card)!important;border-color:var(--card2)!important;color:var(--gold)!important}:root[data-theme=dark] img.logo{background:radial-gradient(circle,#fff6f8 62%,transparent 64%);border-radius:50%}
-@media (prefers-color-scheme: dark){
-:root:not([data-theme=light]){--bg:#1c1418;--card:#2a1f25;--card2:#45303b;--ink:#f6e7ee;--mut:#c79fb2;--sak:#f07aa0;--ind:#f07aa0;--gold:#f4a3c0;--soft:#3a2630;--shadow:0 10px 26px -18px rgba(0,0,0,.7);color-scheme:dark}
-:root:not([data-theme=light]) body{background:var(--bg);color:var(--ink)}:root:not([data-theme=light]) .box,:root:not([data-theme=light]) .pl,:root:not([data-theme=light]) .sc,:root:not([data-theme=light]) .cell,:root:not([data-theme=light]) .slide,:root:not([data-theme=light]) .selbar,:root:not([data-theme=light]) .face,:root:not([data-theme=light]) .opt,:root:not([data-theme=light]) .btn,:root:not([data-theme=light]) .seg,:root:not([data-theme=light]) .stat,:root:not([data-theme=light]) .tc,:root:not([data-theme=light]) .today,:root:not([data-theme=light]) .dc,:root:not([data-theme=light]) .lvc,:root:not([data-theme=light]) .kc,:root:not([data-theme=light]) .tile,:root:not([data-theme=light]) .slot,:root:not([data-theme=light]) .inp,:root:not([data-theme=light]) select,:root:not([data-theme=light]) .fbk,:root:not([data-theme=light]) .rule,:root:not([data-theme=light]) .chip,:root:not([data-theme=light]) .lpick button,:root:not([data-theme=light]) .st3 button,:root:not([data-theme=light]) .strip button,:root:not([data-theme=light]) .side,:root:not([data-theme=light]) .bnav,:root:not([data-theme=light]) .hero,:root:not([data-theme=light]) .ktile,:root:not([data-theme=light]) .cv,:root:not([data-theme=light]) .mode{background:var(--card)!important;border-color:var(--card2)!important;color:var(--ink)}:root:not([data-theme=light]) .chip2,:root:not([data-theme=light]) .lvn,:root:not([data-theme=light]) .jt,:root:not([data-theme=light]) .rtag,:root:not([data-theme=light]) .gic,:root:not([data-theme=light]) .say,:root:not([data-theme=light]) .rex span,:root:not([data-theme=light]) .lvb,:root:not([data-theme=light]) .dch span,:root:not([data-theme=light]) .sstreak,:root:not([data-theme=light]) .pl i,:root:not([data-theme=light]) .cd{background:var(--soft)!important;border-color:var(--card2)!important;color:var(--gold)}:root:not([data-theme=light]) .btn.pri,:root:not([data-theme=light]) .arrow:not(.ghost),:root:not([data-theme=light]) .nav button.on,:root:not([data-theme=light]) .lpick button.on,:root:not([data-theme=light]) .st3 button.on.s2,:root:not([data-theme=light]) .cd.on,:root:not([data-theme=light]) .pl.dn i{background:var(--ind)!important;border-color:var(--ind)!important;color:#2a1220!important}:root:not([data-theme=light]) .seg button.on{background:var(--soft)!important;color:var(--gold)!important}:root:not([data-theme=light]) .lvb.on{color:#8fe0b8}:root:not([data-theme=light]) .lvc.off{background:var(--bg)!important}:root:not([data-theme=light]) .cell.st1,:root:not([data-theme=light]) .kc.st1{background:#33242c!important}:root:not([data-theme=light]) .cell.st2,:root:not([data-theme=light]) .cell.done,:root:not([data-theme=light]) .kc.st2{background:#3d2633!important;border-color:#f07aa0!important;box-shadow:0 0 0 1.5px #f07aa055!important}:root:not([data-theme=light]) .opt.ok,:root:not([data-theme=light]) .slot.ok{background:#173a2a!important;border-color:#34c38a!important;color:#8fe0b8!important}:root:not([data-theme=light]) .opt.bad,:root:not([data-theme=light]) .slot.bad{background:#3d1d24!important;border-color:#ff6b7f!important;color:#ff9aa8!important}:root:not([data-theme=light]) .fbk.ok{background:#173226!important;border-color:#2c6b4c!important}:root:not([data-theme=light]) .fbk.bad{background:#3a1f27!important;border-color:#7a3446!important}:root:not([data-theme=light]) .sv path{stroke:#f6e7ee}:root:not([data-theme=light]) .sv .ghost path{stroke:#4a3340}:root:not([data-theme=light]) .sv .live path{stroke:#f6e7ee}:root:not([data-theme=light]) .cv{background:linear-gradient(#45303b,#45303b) center/2px 100% no-repeat,linear-gradient(#45303b,#45303b) center/100% 2px no-repeat,#fff!important}:root:not([data-theme=light]) .bar,:root:not([data-theme=light]) .stk,:root:not([data-theme=light]) .sbar,:root:not([data-theme=light]) .lvd i{background:var(--soft)}:root:not([data-theme=light]) .lvd i.on{background:var(--ind)}:root:not([data-theme=light]) .stamp{background:var(--soft);box-shadow:inset 0 0 0 3px var(--card),inset 0 0 0 4px #7a3d55}:root:not([data-theme=light]) .stamp.lock{background:var(--bg);border-color:#4a3340;color:#5c4250}:root:not([data-theme=light]) #modal{background:#0008}:root:not([data-theme=light]) .big,:root:not([data-theme=light]) .slide .k,:root:not([data-theme=light]) .cell b,:root:not([data-theme=light]) .chip b,:root:not([data-theme=light]) .kc b{color:var(--ink)}:root:not([data-theme=light]) .credit{color:#8d6d7d}:root:not([data-theme=light]) .arrow.ghost{background:var(--card)!important;border-color:var(--card2)!important;color:var(--gold)!important}:root:not([data-theme=light]) img.logo{background:radial-gradient(circle,#fff6f8 62%,transparent 64%);border-radius:50%}
-}
 
 /* --- Juegos --- */
 .ggrid{display:grid;gap:14px}
@@ -453,22 +447,18 @@ button.chip{font:inherit;color:inherit;cursor:pointer}
 .mcard.dn .mface{background:#e9fbf2;border-color:#34c38a;animation:pop .4s}
 :root[data-theme=dark] .gcard,:root[data-theme=dark] .gplay{color:#2a1220}
 :root[data-theme=dark] .rainbox{background:linear-gradient(#2a1f25,#33232c)}:root[data-theme=dark] .rdrop b,:root[data-theme=dark] .mface{background:#3a2630;color:var(--ink)}:root[data-theme=dark] .mcard.dn .mface{background:#173a2a}
-@media (prefers-color-scheme: dark){:root:not([data-theme=light]) .gcard,:root:not([data-theme=light]) .gplay{color:#2a1220}:root:not([data-theme=light]) .rainbox{background:linear-gradient(#2a1f25,#33232c)}:root:not([data-theme=light]) .rdrop b,:root:not([data-theme=light]) .mface{background:#3a2630;color:var(--ink)}:root:not([data-theme=light]) .mcard.dn .mface{background:#173a2a}}
 @media(prefers-reduced-motion:reduce){.rdrop{animation-timing-function:steps(6)}}
 
 .rainbox+.qopts{grid-template-columns:1fr 1fr}
 
 /* --- pulido: contraste, superficies del navegador, listas y detalles --- */
 /* text and button colours with readable contrast (muted text ≥4.5:1, white on buttons ≥4.5:1) */
-:root{--mut:#87566c;--btn:#d4477b;--btn-ink:#fff}
 :root[data-theme=dark]{--btn:var(--ind);--btn-ink:#2a1220}
-@media (prefers-color-scheme: dark){:root:not([data-theme=light]){--btn:var(--ind);--btn-ink:#2a1220}}
 .btn.pri,.arrow:not(.ghost),.lpick button.on,.st3 button.on.s2,.cd.on,.gmult{background:var(--btn);border-color:var(--btn);color:var(--btn-ink)}
 .lpick button.on .kp{color:var(--btn-ink)}
 .btn svg,.arrow svg{flex:none}.arrow{display:inline-grid;place-items:center}
 /* the parts of the page the browser draws */
 ::selection{background:#fbd3df;color:#3d2433}
-:root{accent-color:var(--btn);caret-color:var(--btn);scrollbar-color:var(--card2) transparent}
 :focus-visible{outline:2.5px solid var(--btn);outline-offset:2px}
 button:focus:not(:focus-visible){outline:none}
 /* one moment of motion instead of every card entering the same way */
@@ -501,17 +491,14 @@ button:focus:not(:focus-visible){outline:none}
 /* dark mode: neutral elevation instead of pink glows; readable credit line */
 :root[data-theme=dark] .btn,:root[data-theme=dark] .arrow,:root[data-theme=dark] .gcard,:root[data-theme=dark] .rdrop b,:root[data-theme=dark] .mback{box-shadow:0 8px 18px -12px rgba(0,0,0,.7)!important}
 :root[data-theme=dark] .credit{color:#a8899a}
-@media (prefers-color-scheme: dark){:root:not([data-theme=light]) .btn,:root:not([data-theme=light]) .arrow,:root:not([data-theme=light]) .gcard,:root:not([data-theme=light]) .rdrop b,:root:not([data-theme=light]) .mback{box-shadow:0 8px 18px -12px rgba(0,0,0,.7)!important}:root:not([data-theme=light]) .credit{color:#a8899a}}
 
 /* dark mode: no pink glows anywhere (neutral elevation only) */
 :root[data-theme=dark] #toast,:root[data-theme=dark] .say,:root[data-theme=dark] .seg button.on,:root[data-theme=dark] .nav button.on,:root[data-theme=dark] .lvc,:root[data-theme=dark] .pl,:root[data-theme=dark] .tile,:root[data-theme=dark] .gplay,:root[data-theme=dark] .combo,:root[data-theme=dark] .bnav,:root[data-theme=dark] .stamp,:root[data-theme=dark] .cell,:root[data-theme=dark] .kc,:root[data-theme=dark] .opt,:root[data-theme=dark] .slide,:root[data-theme=dark] .face{box-shadow:0 8px 18px -14px rgba(0,0,0,.65)!important}
-@media (prefers-color-scheme: dark){:root:not([data-theme=light]) #toast,:root:not([data-theme=light]) .say,:root:not([data-theme=light]) .seg button.on,:root:not([data-theme=light]) .nav button.on,:root:not([data-theme=light]) .lvc,:root:not([data-theme=light]) .pl,:root:not([data-theme=light]) .tile,:root:not([data-theme=light]) .gplay,:root:not([data-theme=light]) .combo,:root:not([data-theme=light]) .bnav,:root:not([data-theme=light]) .stamp,:root:not([data-theme=light]) .cell,:root:not([data-theme=light]) .kc,:root:not([data-theme=light]) .opt,:root:not([data-theme=light]) .slide,:root:not([data-theme=light]) .face{box-shadow:0 8px 18px -14px rgba(0,0,0,.65)!important}}
 
 /* lesson end: the tree grows where the student can see it */
 .lend{text-align:center}.lgrow .tree{max-width:220px;margin:0 auto 4px}
 
 /* --- primer día, navegación, accesibilidad --- */
-:root{--btn:#c23a6e;--gold:#b0406b}
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
 .first{text-align:center;display:grid;gap:8px;justify-items:center;margin-bottom:14px}
 .first .fk{font-family:"Shippori Mincho",serif;font-weight:800;font-size:2.4rem;letter-spacing:.12em;margin:4px 0}
@@ -553,7 +540,6 @@ button:focus:not(:focus-visible){outline:none}
 .gtime{font-variant-numeric:tabular-nums;font-weight:700;color:var(--gold)}
 .xres{display:grid;gap:8px;max-width:360px;margin:12px auto;text-align:left}.xres>div{display:grid;grid-template-columns:100px 1fr auto;gap:8px;align-items:center}
 :root[data-theme=dark] .sen,:root[data-theme=dark] .psg{background:var(--soft)}:root[data-theme=dark] .otile{background:var(--card);color:var(--ink)}:root[data-theme=dark] .psg.notice{background:var(--card);border-color:var(--ink)}:root[data-theme=dark] .fsen{background:rgba(0,0,0,.2)}
-@media (prefers-color-scheme: dark){:root:not([data-theme=light]) .sen,:root:not([data-theme=light]) .psg{background:var(--soft)}:root:not([data-theme=light]) .otile{background:var(--card);color:var(--ink)}:root:not([data-theme=light]) .psg.notice{background:var(--card);border-color:var(--ink)}:root:not([data-theme=light]) .fsen{background:rgba(0,0,0,.2)}}
 
 /* recordatorio diario en Ajustes */
 .sets{display:grid;gap:12px}.snote{font-size:.8rem}
@@ -615,3 +601,75 @@ button:focus:not(:focus-visible){outline:none}
 .oddc span{font-family:"Shippori Mincho",serif;font-weight:800;font-size:clamp(2.2rem,11vw,3.2rem)}.oddc small{color:var(--mut)}
 .oddc:hover:not(:disabled){transform:translateY(-2px)}.oddc.ok{background:#e3f8ed;border-color:#7fd3a7}.oddc.bad{background:#ffe6ea;border-color:#ff9aab}.oddc.dim{opacity:.5}
 :root[data-theme=dark] .oddc.ok,:root[data-theme=dark] .whole.hit span{background:#1f3a2c}:root[data-theme=dark] .oddc.bad,:root[data-theme=dark] .whole.bad span{background:#4a2330}
+
+/* --- diseño: el lenguaje de la portada dentro de la app --- */
+.chip2{white-space:nowrap}
+.ptitle{font-family:"Shippori Mincho",serif;font-weight:800;font-size:clamp(1.7rem,5vw,2.2rem);letter-spacing:-.01em;margin:6px 0 4px;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.ptitle .pj{font-size:.55em;font-weight:700;color:var(--gold);letter-spacing:.08em}
+.sec{font-family:"Shippori Mincho",serif;font-weight:800;font-size:1.2rem;margin:26px 0 10px}
+.ctitle,.kday h2,.tc h2{font-family:"Shippori Mincho",serif}
+/* Inicio: today's session leads; the rest is quieter */
+.hoy{position:relative;overflow:hidden;background:var(--btn);color:var(--btn-ink);border-radius:26px;padding:20px 20px 18px;margin:0 0 16px;box-shadow:0 18px 34px -22px rgba(150,30,80,.75);display:grid;gap:14px}
+.hoy::after{content:"";position:absolute;right:-30px;top:-34px;width:150px;height:150px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.18),transparent 70%);pointer-events:none}
+.hoyt{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.hoyt h2{margin:0;font-family:"Shippori Mincho",serif;font-size:1.6rem;display:flex;align-items:baseline;gap:10px}.hoyt h2 span{font-family:inherit;font-size:.95rem;font-weight:700;opacity:.92}
+.hmin{display:inline-flex;align-items:center;gap:5px;font-size:.85rem;font-weight:700;background:rgba(255,255,255,.18);border-radius:99px;padding:5px 11px}
+.hparts{display:flex;gap:22px;flex-wrap:wrap;align-items:flex-end}.hparts>div{display:grid;gap:2px}
+.hparts b{font-family:"Shippori Mincho",serif;font-size:2.6rem;line-height:1;font-weight:800}.hparts b.hk{font-size:2rem;letter-spacing:.06em}.hparts span{font-size:.88rem;opacity:.92}
+.hoy .hgo{width:100%;justify-content:center;background:#fff;color:var(--btn);border:0;font-weight:800}
+.hoy .hgo:hover{transform:translateY(-1px)}
+.hoy.done{background:var(--card);color:var(--ink);border:1px solid var(--card2);box-shadow:none}.hoy.done p{margin:0;color:var(--mut)}.hoy.done .btn{justify-self:start}
+.hoy.first{background:var(--btn);color:var(--btn-ink);border:0}.hoy.first .ctitle,.hoy.first .mut{color:inherit;opacity:.95}.hoy.first .fk{color:inherit}
+.hoy.first .btn.pri{background:#fff;color:var(--btn);border:0}.hoy.first .btn.link{color:inherit}
+.tc,.kday{box-shadow:none}
+.hseals{font:inherit;color:inherit;width:100%;display:flex;align-items:center;gap:14px;text-align:left;background:none;border:0;border-top:1px solid var(--card2);padding:14px 4px;cursor:pointer;margin-top:4px}
+.hseals>span:nth-child(2){flex:1;display:grid}.hseals .srow{display:flex;gap:6px}.hseals>svg{color:var(--gold)}
+/* Aprender: the kana lessons as a route with stops */
+.lintro{margin:-2px 0 6px;max-width:40rem}
+.route2{position:relative;gap:2px}
+.route2 .pl{background:none;border:0;box-shadow:none;padding:10px 6px;border-radius:18px;position:relative;align-items:center;gap:14px;min-width:0}
+.route2 .pl:not(.cur):hover{background:color-mix(in srgb,var(--card) 70%,transparent);transform:none}
+.route2 .pl::before{content:"";position:absolute;left:27px;top:-2px;bottom:-2px;border-left:3px dotted var(--card2);z-index:0}
+.route2 .sec+.pl::before{top:50%}
+.route2 .pl i{position:relative;z-index:1;width:44px;height:44px;font-size:1.05rem;font-family:"Shippori Mincho",serif;background:var(--card);border:2px solid var(--card2);color:var(--gold)}
+.route2 .pl.dn i{background:#e3f5ec;border-color:#9ad8b8;color:#1f7a4d}
+.route2 .pl.cur{background:var(--card);border:1px solid var(--card2);box-shadow:var(--shadow);padding:14px 12px 14px 6px;margin:6px 0}
+.route2 .pl.cur i{background:var(--sak);border-color:var(--sak);color:#fff;box-shadow:0 0 0 5px color-mix(in srgb,var(--sak) 22%,transparent)}
+.route2 .pl.lock i{background:var(--bg);border-style:dashed}
+.route2 .pl.lock{opacity:.6}
+.route2 .pl .kp{white-space:normal;font-family:"Shippori Mincho",serif;font-size:1.25rem!important;letter-spacing:.08em}
+.route2 .pl.rl{border-style:none}.route2 .pl.rl i{border-style:solid;background:#fff6e0;border-color:#f3d48b;color:#a5711a}
+.route2 .kn{font:inherit;font-size:.82rem;font-weight:700;color:var(--gold);background:none;border:0;padding:6px 4px;cursor:pointer;text-decoration:underline;text-underline-offset:3px;white-space:nowrap}
+.route2 .pl.lock .kn{display:none}.route2 .pl.lock:nth-of-type(-n+99) .kn{display:none}
+.plan>*{min-width:0}
+/* Juegos: one family of sakura tones instead of a rainbow */
+.g1{background:linear-gradient(140deg,#ffe0ea,#ffb9cf)}.g2{background:linear-gradient(140deg,#f6e1f1,#e5b9da)}.g3{background:linear-gradient(140deg,#ffe8de,#ffc7b0)}.g4{background:linear-gradient(140deg,#fbe6ea,#f2c2cc)}
+.g5{background:linear-gradient(140deg,#fff0e2,#fdd3b5)}.g6{background:linear-gradient(140deg,#efe2f6,#d6bde8)}.g7{background:linear-gradient(140deg,#ffdbe7,#f6a9c4)}
+:root[data-theme=dark] .route2 .pl.dn i{background:#1f3a2c;border-color:#2f6b4c;color:#8fe0b8}:root[data-theme=dark] .route2 .pl.rl i{background:#3a2f1c;border-color:#6b5420;color:#f3d48b}
+:root[data-theme=dark] .hoy .hgo,:root[data-theme=dark] .hoy.first .btn.pri{background:#2a1220;color:var(--ind)}
+.route2 .pl.cur{flex-wrap:wrap;row-gap:10px}.route2 .pl.cur>div{flex:1 1 calc(100% - 60px)!important}.route2 .pl.cur .btn{margin-left:58px}
+.route2 .pl.lock i{color:var(--mut)}
+@media(max-width:899px){.tc .tree{max-width:190px}.tc{padding-bottom:14px}}
+/* the route of lessons in dark mode: rows stay open, only the current one is a card */
+:root[data-theme=dark] .route2 .pl{background:none!important;box-shadow:none!important}
+:root[data-theme=dark] .route2 .pl.cur{background:var(--card)!important;box-shadow:0 8px 18px -14px rgba(0,0,0,.65)!important}
+:root[data-theme=dark] .route2 .pl i{background:var(--card)!important;border-color:var(--card2)!important;color:var(--gold)!important}
+:root[data-theme=dark] .route2 .pl.dn i{background:#1f3a2c!important;border-color:#2f6b4c!important;color:#8fe0b8!important}
+:root[data-theme=dark] .route2 .pl.cur i{background:var(--sak)!important;border-color:var(--sak)!important;color:#2a1220!important}
+:root[data-theme=dark] .route2 .pl.lock i{background:var(--bg)!important;color:var(--mut)!important}
+:root[data-theme=dark] .route2 .pl.rl i{background:#3a2f1c!important;border-color:#6b5420!important;color:#f3d48b!important}
+
+/* kanji groups as a route */
+.groute .pl i{font-family:inherit}.groute .pl i svg{width:20px;height:20px}
+.groute .gname{display:block;font-size:1.02rem}.groute .kp{font-family:"Shippori Mincho",serif;font-size:1.15rem;letter-spacing:.12em;color:var(--ink);margin:2px 0}
+.groute .pl.cur{flex-wrap:nowrap}.groute .pl.cur>div{flex:1 1 auto!important}
+.groute .gdsc{margin:8px 0 10px;font-size:.88rem}.gact{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.groute .pl:not(.cur){cursor:pointer}
+.groute .pl.cur{align-items:flex-start}.groute .pl.cur i{margin-top:2px}.groute .pl.cur .btn{margin-left:0}.gact{justify-content:flex-start}
+
+.route2{max-width:760px}
+/* motion: a short entrance when the screen changes, and petals when a lesson is completed */
+#app.enter{animation:scr .32s cubic-bezier(.16,1,.3,1)}
+@keyframes scr{from{opacity:.4;transform:translateY(8px)}to{opacity:1;transform:none}}
+.lend{position:relative;overflow:hidden;isolation:isolate}.lend .petals svg{width:16px}
+@media (prefers-reduced-motion:reduce){#app.enter{animation:none}}
