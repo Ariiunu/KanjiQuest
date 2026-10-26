@@ -2,7 +2,7 @@
 // The app's own files (page, styles, scripts, manifest) are fetched network-first, so updates
 // arrive on their own; icons and Google Fonts are served from the saved copy first.
 // Bump VERSION when the list below changes so installed apps refresh their saved copy.
-const VERSION = 'v5';
+const VERSION = 'v6';
 const CACHE = 'kanji-no-tankyuu-' + VERSION;
 const SHELL = [
   './',
@@ -19,7 +19,8 @@ const SHELL = [
   './icons/maskable-512.png',
   './icons/apple-touch-icon.png',
   './icons/favicon.png',
-  './icons/logo.png'
+  './icons/logo.png',
+  './icons/cards/sobre.webp'
 ];
 
 self.addEventListener('install', e => {

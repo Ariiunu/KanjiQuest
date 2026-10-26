@@ -1,20 +1,25 @@
 # Ilustraciones de las cartas
 
-Pon aquí las imágenes de las cartas en formato vertical 2:3 (por ejemplo 600×900 px), en WebP.
-La app las muestra solas cuando existen; mientras falten, cada carta muestra su kanji sobre los colores de su rareza.
+Imágenes verticales 2:3 (600×900 px) en WebP, sin texto ni brillo: el marco, el kanji y el efecto holográfico los pone la app.
+Mientras falte una imagen, la carta muestra su kanji sobre los colores de su rareza.
 
 | Archivo | Carta | Rareza |
 |---|---|---|
-| `fuego.webp` | 火 Espíritu del fuego | Pétalo |
-| `agua.webp` | 水 Espíritu del agua | Pétalo |
-| `arbol.webp` | 木 Espíritu del árbol | Pétalo |
-| `montana.webp` | 山 Espíritu de la montaña | Flor |
-| `lluvia.webp` | 雨 Espíritu de la lluvia | Flor |
-| `luna.webp` | 月 Espíritu de la luna | Flor |
-| `sol.webp` | 日 Espíritu del sol | Rama |
-| `viento.webp` | 風 Espíritu del viento | Rama |
-| `nieve.webp` | 雪 Espíritu de la nieve | Rama |
-| `flor.webp` | 花 Espíritu de la flor | Rama |
-| `sueno.webp` | 夢 Espíritu del sueño | Árbol |
-| `sakura.webp` | 桜 Espíritu del sakura | Árbol |
-| `reverso.webp` | Reverso de las cartas | — |
+| `montana.webp` | 山 Tanuki de la montaña | Común |
+| `rio.webp` | 川 Kappa del río | Común |
+| `arbol.webp` | 木 Uguisu del árbol | Común |
+| `sol.webp` | 日 Solcito | Común |
+| `luna.webp` | 月 Gato de la luna | Común |
+| `agua.webp` | 水 Koi del agua | Común |
+| `fuego.webp` | 火 Llamita del farol | Común |
+| `lluvia.webp` | 雨 Rana de la lluvia | Común |
+| `flor.webp` | 花 Abeja de la flor | Común |
+| `perro.webp` | 犬 Shiba | Común |
+| `campo.webp` | 田 Espantapájaros del arrozal | Común |
+| `cielo.webp` | 空 Ballena del cielo | Común |
+| `kodama.webp` | 初 Kodama del primer brote | Rara |
+| `kitsune.webp` | 桜 Kitsune de los cerezos | Rara |
+| `fenix.webp` | 炎 Fénix de la llama eterna | Épica |
+| `usagi.webp` | 星 Usagi de la luna | Épica |
+| `dragon.webp` | 龍 Dragón sakura | Legendaria |
+| `sobre.webp` | El sobre (fondo transparente); también es el reverso de las cartas | — |

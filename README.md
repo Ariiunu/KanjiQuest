@@ -19,7 +19,7 @@ App web para estudiar japonés en tres niveles, cada uno con su propio progreso:
 - **Biblioteca:** filtros por grupo, trazos y estado (no visto / visto / aprendido), con selección múltiple. En かな muestra las tablas de hiragana y katakana.
 - **Inicio:** árbol de sakura que florece con cada kanji aprendido y kanji (o kana) del día.
 - **Logros:** tu progreso en números (aprendidos, en camino, repasos de los próximos 7 días y lo que más te cuesta, con un botón para practicarlo), calendario de racha y 15 sellos estilo hanko.
-- **Cartas (札):** 12 espíritus del kanji en 4 rarezas (Pétalo, Flor, Rama, Árbol). Cada 3 sellos —sumando todos los niveles— se abre un sobre (5 sobres); las cartas se dan vuelta una por una y quedan en el álbum (Logros → Ver álbum). Las ilustraciones van en `icons/cards/` (ver `icons/cards/LEEME.md`).
+- **Cartas (札):** 17 espíritus del kanji (12 comunes, 2 raras, 2 épicas y 1 legendaria). Cada 3 sellos —sumando todos los niveles— ganas un sobre holográfico con 3 cartas al azar (2 comunes y 1 rara o mejor); las repetidas dan XP. El sobre se rasga, las cartas se dan vuelta una por una y brillan al moverlas o inclinar el celular. Álbum en Logros → Ver álbum; ilustraciones en `icons/cards/` (ver `icons/cards/LEEME.md`).
 - **Ajustes** (botón de engranaje en el inicio): modo claro u oscuro, sonidos, recordatorio diario y cambio de nivel.
 - **Modo claro y oscuro:** se cambia con el botón de luna o sol del inicio (en PC, en la barra lateral) o desde Ajustes. Empieza en claro.
 - **Diseño:** versión para PC (barra lateral) y para celular (barra inferior).
