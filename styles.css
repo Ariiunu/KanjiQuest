@@ -796,3 +796,8 @@ body{overflow-x:clip}
 .jinst{font-size:.88rem;line-height:1.6;color:var(--mut);margin:8px 0 4px;text-align:left}
 .sstar{line-height:2.4}.sslot{display:inline-block;width:3.6em;border-bottom:2px solid var(--ink);margin:0 3px;text-align:center;font-size:.8em;color:var(--btn);vertical-align:bottom;line-height:1.2}
 .sslot.st{border-bottom-color:var(--btn)}
+
+/* Inicio: grammar card */
+.gcardh .ph{display:flex;justify-content:space-between;align-items:baseline}.gcardh .ctitle{margin:0;display:flex;align-items:baseline;gap:8px}.gcardh .bar{margin-top:8px}
+.gnext{font:inherit;color:inherit;text-align:left;width:100%;display:grid;gap:2px;padding:12px 14px;border-radius:16px;border:1px solid var(--card2);background:var(--bg);cursor:pointer}
+.gnext b{font-family:"Shippori Mincho",serif;font-size:1.35rem}.gnext span{color:var(--mut);font-size:.9rem}
