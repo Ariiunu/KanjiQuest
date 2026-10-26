@@ -17,7 +17,7 @@ App web para estudiar japonés en tres niveles, cada uno con su propio progreso:
 - **Recordatorio diario:** quien instaló la app en el celular puede activarlo en Ajustes y elegir la hora; solo llega los días que aún no ha estudiado (ver «Recordatorios» abajo).
 - **Biblioteca:** filtros por grupo, trazos y estado (no visto / visto / aprendido), con selección múltiple. En かな muestra las tablas de hiragana y katakana.
 - **Inicio:** árbol de sakura que florece con cada kanji aprendido y kanji (o kana) del día.
-- **Logros:** calendario de racha con los días estudiados y 15 sellos estilo hanko.
+- **Logros:** tu progreso en números (aprendidos, en camino, repasos de los próximos 7 días y lo que más te cuesta, con un botón para practicarlo), calendario de racha y 15 sellos estilo hanko.
 - **Ajustes** (botón de engranaje en el inicio): modo claro u oscuro, sonidos, recordatorio diario y cambio de nivel.
 - **Modo claro y oscuro:** se cambia con el botón de luna o sol del inicio (en PC, en la barra lateral) o desde Ajustes. Empieza en claro.
 - **Diseño:** versión para PC (barra lateral) y para celular (barra inferior).

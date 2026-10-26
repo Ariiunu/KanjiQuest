@@ -772,3 +772,12 @@ body{overflow-x:clip}
 .opt.ok::after,.opt.bad::after{content:"";position:absolute;right:14px;top:50%;width:18px;height:18px;margin-top:-9px;background:currentColor;-webkit-mask:var(--mk) center/contain no-repeat;mask:var(--mk) center/contain no-repeat}
 .opt.ok{--mk:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5' fill='none' stroke='black' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")}
 .opt.bad{--mk:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M7 7l10 10M17 7L7 17' fill='none' stroke='black' stroke-width='2.6' stroke-linecap='round'/%3E%3C/svg%3E")}
+
+/* Logros: progress in numbers */
+.pstat{margin-bottom:16px}.pnum{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:8px 0 4px}.pnum>div{display:grid;gap:2px;text-align:center;padding:10px 6px;border-radius:14px;background:var(--bg)}
+.pnum b{font-family:"Shippori Mincho",serif;font-size:1.6rem;color:var(--gold)}.pnum span{font-size:12px;color:var(--mut)}
+.ph3{font-weight:700;margin:16px 0 8px}
+.pdays{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;align-items:end;height:120px}.pdays>div{display:grid;grid-template-rows:1fr auto auto;height:100%;text-align:center;gap:2px}
+.pdays i{align-self:end;display:block;width:70%;margin:0 auto;min-height:3px;border-radius:6px 6px 2px 2px;background:var(--ind)}.pdays b{font-size:12px}.pdays span{font-size:12px;color:var(--mut);text-transform:capitalize}
+.phard{display:flex;flex-wrap:wrap;gap:6px}.phard button{font:inherit;display:grid;justify-items:center;gap:2px;min-width:64px;padding:8px 10px;border-radius:14px;border:1px solid var(--card2);background:var(--card);color:var(--ink);cursor:pointer}
+.phard b{font-family:"Shippori Mincho",serif;font-size:1.5rem}.phard span{font-size:12px;color:var(--mut);max-width:80px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}

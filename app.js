@@ -419,7 +419,7 @@ function themeColor(){const dark=document.documentElement.dataset.theme==='dark'
 themeColor();matchMedia('(prefers-color-scheme: dark)').addEventListener('change',themeColor);
 const setH=()=>`<div class="box sets"><b>Ajustes</b><div class="srow2"><span class="mut">Apariencia</span><div class="seg">${[['light','Claro'],['dark','Oscuro']].map(o=>`<button class="${theme()===o[0]?'on':''}" onclick="setTheme('${o[0]}');if(document.getElementById('modal').classList.contains('show'))openSets()">${o[1]}</button>`).join('')}</div></div><div class="srow2"><span class="mut">Sonidos al responder</span><div class="seg">${[[true,'Sí'],[false,'No']].map(o=>`<button class="${S.snd===o[0]?'on':''}" onclick="S.snd=${o[0]};save();render();if(document.getElementById('modal').classList.contains('show'))openSets()">${o[1]}</button>`).join('')}</div></div>${voiceH()}${pushH()}${bakH()}</div>`;
 // Logros: calendar first, then the seals, then settings
-const _ach=achV;achV=function(){return calH()+_ach()+`<p class="lajs"><button class="btn" onclick="openSets()">${ic('gear',16,'currentColor','none')} Ajustes y copia de tu progreso</button></p>`};
+const _ach=achV;achV=function(){return calH()+statsH()+_ach()+`<p class="lajs"><button class="btn" onclick="openSets()">${ic('gear',16,'currentColor','none')} Ajustes y copia de tu progreso</button></p>`};
 // --- Juegos: minigames with lives, points and records, using what you've already seen
 S.hs=S.hs||{};
 const mBtn=()=>V.tab==='games'?`<button class="btn" onclick="gMenu()">Juegos</button>`:`<button class="btn" onclick="V.rm='hub';render()">Modos</button>`;
@@ -712,5 +712,12 @@ const mClose=()=>document.getElementById('modal').classList.remove('show');
 (()=>{const m=document.getElementById('modal');if(!m)return;m.setAttribute('role','dialog');m.setAttribute('aria-modal','true');m.setAttribute('aria-labelledby','mttl');let prev=null;
 new MutationObserver(()=>{if(m.classList.contains('show')){if(prev)return;prev=document.activeElement;const h=m.querySelector('h2');if(h)h.id='mttl';const f=m.querySelector('#mbox .btn.pri,#mbox button,#mbox [href],#mbox input');if(f)setTimeout(()=>f.focus(),30)}else if(prev){try{prev.focus()}catch(e){}prev=null}}).observe(m,{attributes:true,attributeFilter:['class'],childList:true,subtree:true});
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&m.classList.contains('show')){e.preventDefault();mClose()}})})();
+// --- your progress in numbers: what's hardest for you and how many reviews are coming
+function statsH(){const now=Date.now(),hard=K.filter(x=>(S.miss[x.k]||0)>0).sort((a,b)=>S.miss[b.k]-S.miss[a.k]).slice(0,6),seen=K.filter(x=>stOf(x.k)>=1).length,ln=K.filter(x=>stOf(x.k)===2).length;
+const days=Array.from({length:7},(_,i)=>{const end=new Date();end.setHours(23,59,59,999);end.setDate(end.getDate()+i);const st=i?new Date(end.getTime()-864e5+1):0;return{d:i,n:K.filter(x=>{const c=S.cards[x.k];return c&&(c.due||0)<=end.getTime()&&(c.due||0)>=st}).length,l:i===0?'Hoy':i===1?'Mañ':end.toLocaleDateString('es-CL',{weekday:'short'}).replace('.','').slice(0,3)}}),mx=Math.max(1,...days.map(x=>x.n));
+if(!seen)return'';
+return`<div class="box pstat"><h2 class="ctitle">Tu progreso</h2><div class="pnum"><div><b>${ln}</b><span>aprendidos</span></div><div><b>${seen-ln}</b><span>en camino</span></div><div><b>${K.length-seen}</b><span>por descubrir</span></div></div>
+<p class="ph3">Repasos de los próximos días</p><div class="pdays" role="img" aria-label="${days.map(x=>x.l+': '+x.n).join(', ')}">${days.map(x=>`<div><i style="height:${Math.round(x.n/mx*100)}%"></i><b>${x.n}</b><span>${x.l}</span></div>`).join('')}</div>
+${hard.length?`<p class="ph3">Lo que más te cuesta</p><div class="phard">${hard.map(x=>`<button onclick="det('${x.k}')" lang="ja"><b>${x.k}</b><span>${KN?x.es:x.es.split(',')[0]}</span></button>`).join('')}</div><p style="margin:10px 0 0"><button class="btn pri" onclick="go('fc');pStart('errors')">Practicar estos ${AR()}</button></p>`:''}</div>`}
 V.tab=(()=>{try{const g=sessionStorage.getItem('kgo');sessionStorage.removeItem('kgo');return g?'home':'lvl'}catch(e){return'lvl'}})();
 render();
