@@ -25,7 +25,8 @@
 .tcard.back{cursor:default;border-color:#f2b3c7}
 .cgrid2{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;max-width:520px}
 .cardsh{display:grid;gap:10px;margin-bottom:6px}.cardsh .btn{justify-self:start}
-.cbrow{display:flex;gap:14px;align-items:center}.pbar{height:8px}
+.cbrow{display:flex;gap:14px;align-items:center}
+.spts{display:inline-block;margin:2px auto 4px;font-size:.72rem;font-weight:800;color:var(--ind,#c23a6e);background:#fde6ee;border-radius:99px;padding:2px 8px}.spts.ok{background:#e3f6ec;color:#1f9d63}.pbar{height:8px}
 .minipack{position:relative;flex:none;width:66px;aspect-ratio:636/1100;border:0;padding:0;cursor:pointer;background:url(icons/cards/sobre.webp) center/100% 100% no-repeat;filter:drop-shadow(0 8px 10px rgba(120,30,70,.3));--hi:.5}
 .minipack i{position:absolute;right:-8px;top:-6px;z-index:5;font-style:normal;font-size:12px;font-weight:800;background:#8c2a4f;color:#fff;border-radius:99px;min-width:22px;padding:2px 6px}
 .cdet{max-width:320px;margin:0 auto;text-align:center}.crar{font-weight:800;color:var(--gold);margin:12px 0 4px}
