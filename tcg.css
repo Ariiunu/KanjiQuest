@@ -150,5 +150,42 @@
 .cart.h-bolt::before{background:repeating-linear-gradient(60deg,rgba(255,255,255,0) 0 14px,rgba(255,240,170,.7) 16px,rgba(255,255,255,0) 19px 30px),repeating-linear-gradient(-60deg,rgba(255,255,255,0) 0 22px,rgba(255,200,230,.5) 24px,rgba(255,255,255,0) 27px 40px);background-size:auto;background-position:var(--mx,50%) var(--my,50%);mix-blend-mode:overlay;animation:bolt 2.6s steps(1) infinite}
 @keyframes bolt{0%,100%{opacity:.5}48%{opacity:.5}50%{opacity:1}52%{opacity:.6}54%{opacity:1}}
 .cart.h-ribbon::before{background:repeating-linear-gradient(120deg,rgba(255,255,255,0) 0 18px,rgba(255,220,235,.6) 22px,rgba(255,246,214,.55) 26px,rgba(255,255,255,0) 30px 44px);background-size:200% 200%;mix-blend-mode:overlay;animation:sweep 5s ease-in-out infinite}
-@media (prefers-reduced-motion:reduce){.holo{transform:none!important}.holo:not(.act)::before,.sobw,.sobw.tear,.pk .flip,.rays,.tcard.r-l,.cart::before,.cart::after,.cart.h-spiral::before,.cart.h-cosmos::before,.cart.h-bolt::before,.cart.h-ribbon::before,.sobre .cg i,.pile,.sc2.in,.sobw.tear.out,.sc2.hid .flip,.sc2.hid .fb2 .cback{animation:none!important}.flip>span{transition:none}}
+/* collections and daily missions */
+.csets{display:grid;gap:10px;max-width:520px}
+.cset{display:flex;align-items:center;justify-content:space-between;gap:10px;background:var(--card);border:1px solid var(--card2);border-radius:16px;padding:10px 12px}
+.cset.ok{border-color:#9edcbc;background:linear-gradient(135deg,var(--card),#eaf8f1)}
+.cst{display:grid;gap:2px;min-width:0}.cst small{color:var(--mut);font-size:12px;display:flex;align-items:center;gap:4px}.cset.ok .cst small{color:#17784b}
+.csth{display:flex;flex:none}.csth span{width:26px;aspect-ratio:2/3;border-radius:5px;background:center/cover #f2a7bf;border:2px solid var(--card);margin-left:-8px;box-shadow:0 2px 6px -2px rgba(120,30,70,.4)}.csth span:first-child{margin-left:0}.csth span.off{filter:grayscale(1) opacity(.35)}
+.pkset{margin:0;font-weight:800;color:#ffe08a;display:flex;align-items:center;gap:6px;justify-content:center}
+.missb{margin-top:14px}.missb .ph{display:flex;justify-content:space-between;align-items:baseline}.missb .ctitle{margin:0}
+.mis{display:grid;gap:6px;padding:10px 0;border-bottom:1px solid var(--card2)}.mis:last-of-type{border-bottom:0}
+.mis b{display:flex;align-items:center;gap:4px;font-size:.95rem}.mis small{color:var(--mut);font-size:12px}.mis .bar{height:6px}
+.mis.ok b{color:#17784b}.mis.ok .bar i{background:#3bb77e}
+:root[data-theme=dark] .cset.ok{background:var(--card);border-color:#2f7a55}
+/* legendaries: gold. A turning metallic gold frame, gold foil, gold labels and a gold glow */
+@property --ga{syntax:'<angle>';inherits:false;initial-value:0deg}
+.tcard.r-l{border-width:5px;background:linear-gradient(var(--card),var(--card)) padding-box,conic-gradient(from var(--ga),#7d500e,#ffe9a6,#c99a2e,#fff7d6,#a8741a,#ffe08a,#7d500e) border-box;animation:aura 2.2s ease-in-out infinite alternate,gspin 5s linear infinite}
+@keyframes gspin{to{--ga:360deg}}
+.tcard.r-l.holo::before{background:repeating-linear-gradient(115deg,#ffcf5a 0%,#fff3c4 5%,#ffb3d0 10%,#ffe7a0 15%,#d9a440 20%,#fff6dc 25%,#ffcf5a 30%);opacity:.55}
+.r-l .cart{box-shadow:inset 0 0 0 2px rgba(255,226,150,.95),inset 0 0 34px rgba(255,196,80,.5)}
+.r-l .ctop i{background:linear-gradient(135deg,#7a4d0c,#e8b84a 40%,#fff3c4 52%,#c18a25);color:#3d2400;text-shadow:0 1px 0 rgba(255,255,255,.55);box-shadow:0 0 10px rgba(255,210,110,.8)}
+.r-l .ctop i::before{content:"★ "}
+.r-l .ctop b{background:linear-gradient(#fff8e1,#ffe39a);color:#6b4310;box-shadow:0 0 0 1.5px #d9a440}
+.r-l .cname{background:linear-gradient(transparent,rgba(255,242,206,.97) 42%)}.r-l .cname b{color:#7a4a0a}.r-l .cname small{color:#8a6420}
+.pk.gold{background:radial-gradient(circle at 50% 42%,#b9862a,#5a2a16 55%,#2a120c 85%);transition:background .8s}
+/* more holographic patterns for specials */
+.cart.h-flame::before{background:repeating-linear-gradient(8deg,rgba(255,255,255,0) 0 16px,rgba(255,180,110,.55) 22px,rgba(255,236,170,.5) 25px,rgba(255,255,255,0) 31px 40px);background-size:100% 300%;mix-blend-mode:overlay;animation:hflame 2.6s linear infinite}
+@keyframes hflame{from{background-position:0 0}to{background-position:0 -120px}}
+.cart.h-stars::before{background-image:radial-gradient(circle,#fff 0 2px,transparent 3px),radial-gradient(circle,#ffe9a8 0 1.5px,transparent 2.5px);background-size:47px 53px,31px 37px;background-position:calc(var(--mx,50%) * .3) calc(var(--my,50%) * .3),calc(var(--mx,50%) * -.2) 0;mix-blend-mode:screen;animation:twinkle 1.6s ease-in-out infinite alternate}
+.cart.h-glitter::before{background-image:radial-gradient(circle,#fff 0 1.3px,transparent 2px),radial-gradient(circle,#ffd1e6 0 1.1px,transparent 1.8px);background-size:13px 13px,21px 19px;background-position:calc(var(--mx,50%) * .5) calc(var(--my,50%) * .5),calc(var(--mx,50%) * -.4) 0;mix-blend-mode:screen;animation:twinkle 1.2s ease-in-out infinite alternate}
+.cart.h-ripple::before{background:repeating-radial-gradient(circle at var(--mx,50%) var(--my,50%),rgba(255,255,255,0) 0 14px,rgba(255,255,255,.55) 17px,rgba(255,255,255,0) 21px);mix-blend-mode:overlay;animation:hripple 3s ease-in-out infinite alternate}
+@keyframes hripple{to{transform:scale(1.18)}}
+/* a legendary shakes: hard while it waits face down, a big jolt when it turns over, and the pile rumbles */
+.sc2.hid.cur .flip.r-l{animation:lshake .36s ease-in-out infinite}
+@keyframes lshake{0%,100%{transform:translate(0,0) rotate(0)}20%{transform:translate(-5px,1px) rotate(-3deg)}40%{transform:translate(5px,-1px) rotate(3deg)}60%{transform:translate(-4px,0) rotate(-2deg) scale(1.03)}80%{transform:translate(4px,1px) rotate(2deg) scale(1.03)}}
+.pk .pile .flip.on.r-l{animation:lreveal 1s .15s ease-out}
+@keyframes lreveal{0%{transform:scale(1)}12%{transform:scale(1.2) rotate(-4deg)}24%{transform:scale(1.15) rotate(4deg)}36%{transform:scale(1.12) rotate(-3deg)}50%{transform:scale(1.08) rotate(2deg)}66%{transform:scale(1.04) rotate(-1deg)}100%{transform:scale(1)}}
+.pk.gold .pile{animation:quake .6s .1s ease-in-out}
+@keyframes quake{0%,100%{transform:none}15%{transform:translate(-6px,3px)}30%{transform:translate(6px,-4px)}45%{transform:translate(-5px,2px)}60%{transform:translate(4px,-2px)}80%{transform:translate(-2px,1px)}}
+@media (prefers-reduced-motion:reduce){.holo{transform:none!important}.holo:not(.act)::before,.sobw,.sobw.tear,.pk .flip,.rays,.tcard.r-l,.cart::before,.cart::after,.sc2.hid.cur .flip.r-l,.pk .pile .flip.on.r-l,.pk.gold .pile,.cart.h-spiral::before,.cart.h-cosmos::before,.cart.h-bolt::before,.cart.h-ribbon::before,.cart.h-flame::before,.cart.h-stars::before,.cart.h-glitter::before,.cart.h-ripple::before,.tcard.r-l,.sobre .cg i,.pile,.sc2.in,.sobw.tear.out,.sc2.hid .flip,.sc2.hid .fb2 .cback{animation:none!important}.flip>span{transition:none}}
 :root[data-theme=dark] .tcard{color:#3d2433}

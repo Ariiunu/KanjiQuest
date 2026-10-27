@@ -840,3 +840,14 @@ input,textarea,select,[contenteditable]{-webkit-user-select:text;user-select:tex
 /* start screen: seals and cards under «Continuar» */
 .lvach{display:grid;gap:10px;margin-top:14px}
 @media (min-width:700px){.lvach{grid-template-columns:1fr 1fr}}
+/* letter style chosen in Ajustes (Redondeada is the default, without the attribute) */
+:root[data-font=noto] body,:root[data-font=noto] .rex small{font-family:"Noto Sans JP",system-ui,sans-serif}
+:root[data-font=mplus] body,:root[data-font=mplus] .rex small{font-family:"M PLUS Rounded 1c","Zen Maru Gothic",sans-serif}
+:root[data-font=klee] body,:root[data-font=klee] .rex small{font-family:"Klee One","Zen Maru Gothic",sans-serif}
+.fontrow{flex-wrap:wrap;gap:8px}.fpick{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;width:100%}
+.fpick button{font:inherit;display:grid;gap:2px;justify-items:center;padding:8px 4px;border:1px solid var(--card2);border-radius:12px;background:var(--card);color:var(--ink);cursor:pointer}
+.fpick button b{font-size:1.05rem;font-family:inherit}.fpick button small{font-size:12px;color:var(--mut);font-family:inherit}
+.fpick button.on{border-color:var(--btn);box-shadow:0 0 0 2px var(--btn) inset}
+/* writing pad (lessons and the detail sheet) */
+.wbtn{margin:8px auto 4px;display:inline-flex;align-items:center;gap:6px}
+.wpad{text-align:center}.wpad .wpk{font-family:"Shippori Mincho",serif;font-size:1.6rem;color:var(--ind)}.wpad .cv{margin:0 auto;display:block}
