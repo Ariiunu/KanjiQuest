@@ -856,3 +856,6 @@ input,textarea,select,[contenteditable]{-webkit-user-select:text;user-select:tex
 :root[data-jf=libro]{--jf:"Klee One","Zen Maru Gothic",serif}
 :root[data-jf=imprenta]{--jf:"Noto Sans JP",system-ui,sans-serif}
 :root[data-jf=redonda]{--jf:"Zen Maru Gothic","Noto Sans JP",sans-serif}
+.lpts{display:inline-flex;align-items:center;gap:6px;font-weight:800;color:var(--gold);margin:4px 0 0}
+/* start screen: Ajustes at the top right, next to the logo */
+.lvbrand .lvset{margin-left:auto;display:inline-grid;place-items:center;min-width:44px;min-height:44px;padding:0;cursor:pointer;color:var(--gold)}
