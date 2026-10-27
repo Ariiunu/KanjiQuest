@@ -33,8 +33,9 @@
 .cname b{font-size:1.15em;font-weight:900;letter-spacing:.02em}.cname small{font-size:.75em;font-weight:700;color:#87566c}
 .flip.big{display:block;width:min(240px,70vw);margin:0 auto;touch-action:none}.flip.big .cname{font-size:13px}.flip.big .ctop b{font-size:1.3rem}.flip.big .ctop i{font-size:11px}
 /* holographic foil: --mx/--my follow the pointer or the tilt; --hi is how strong it shines */
-.holo{--mx:50%;--my:50%;--rx:0deg;--ry:0deg;isolation:isolate;transform:perspective(800px) rotateX(var(--rx)) rotateY(var(--ry));transition:transform .3s ease-out}
-.holo.act{transition:transform .08s linear}
+.holo{--mx:50%;--my:50%;--rx:0deg;--ry:0deg;isolation:isolate;transform:perspective(600px) rotateX(var(--rx)) rotateY(var(--ry));transition:transform .3s ease-out}
+.holo.act{transition:transform .08s linear;transform:perspective(600px) rotateX(var(--rx)) rotateY(var(--ry)) scale(1.03)}
+.tcard.holo.act{box-shadow:var(--sx,0px) var(--sy,14px) 28px -8px rgba(60,10,35,.45)}
 .holo::before,.holo::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;z-index:3}
 .holo::before{background:repeating-linear-gradient(115deg,#ff6fa8 0%,#ffc95c 6%,#5fd6b0 12%,#6f95ff 18%,#c77dff 24%,#ff6fa8 30%);background-size:300% 300%;background-position:var(--mx) var(--my);mix-blend-mode:overlay;opacity:calc(var(--hi,.3) + .1)}
 .holo::after{background:radial-gradient(40% 30% at var(--mx) var(--my),rgba(255,255,255,.6),rgba(255,255,255,0));mix-blend-mode:soft-light;opacity:.8}
@@ -44,7 +45,7 @@
 /* opening a pack */
 .pk{position:fixed;inset:0;z-index:30;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;padding:calc(56px + env(safe-area-inset-top,0px)) 16px calc(24px + env(safe-area-inset-bottom,0px));background:radial-gradient(circle at 50% 42%,#7d3358,#3a1628 72%);color:#fff;text-align:center;overflow:auto;animation:pkin .35s ease-out}
 @keyframes pkin{from{opacity:0}}
-.pk>.pkh,.pk>.sobw,.pk>.prow,.pk>.pkact{z-index:1}
+.pk>.pkh,.pk>.sobw,.pk>.pile,.pk>.pkact{z-index:1}
 .pkx{position:absolute;z-index:2;top:calc(12px + env(safe-area-inset-top,0px));right:14px;width:42px;height:42px;border-radius:50%;border:0;background:rgba(255,255,255,.14);color:#fff;font-size:1.6rem;line-height:1;cursor:pointer}
 .pkh{margin:0;font-weight:700;min-height:1.4em}
 @property --ra{syntax:'<angle>';inherits:false;initial-value:0deg}
@@ -85,7 +86,6 @@
 @keyframes pkshake{25%{transform:rotate(-2deg)}75%{transform:rotate(2deg) scale(1.03)}}
 @keyframes pkshake2{25%{transform:rotate(-4deg) scale(1.04)}75%{transform:rotate(4deg) scale(1.07)}}
 @keyframes rip{to{transform:translate(35%,-90%) rotate(22deg);opacity:0}}
-.prow{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
 .flip{font:inherit;color:inherit;position:relative;width:min(100px,26vw);aspect-ratio:2/3;border:0;padding:0;background:none;cursor:pointer;perspective:900px;isolation:isolate}
 .pk .flip{width:min(160px,28vw);animation:deal .6s var(--d,0s) cubic-bezier(.16,1,.3,1) backwards}
 @keyframes deal{from{transform:translateY(120px) scale(.4) rotate(-8deg);opacity:0}}
@@ -94,7 +94,8 @@
 .flip>span{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;transition:transform .6s cubic-bezier(.16,1,.3,1),visibility 0s .12s;border-radius:12px;overflow:hidden}
 /* the side facing away is also hidden halfway through the turn: animated layers inside a card ignore backface-visibility */
 .flip:not(.on) .ff,.flip.on .fb2{visibility:hidden}
-.flip .fb2{border:3px solid #f2b3c7;box-shadow:0 14px 24px -12px rgba(0,0,0,.5)}
+/* the back is a whole card (border included) so the 3D tilt moves all of it, not just the picture inside */
+.flip .fb2{overflow:visible;box-shadow:0 14px 24px -12px rgba(0,0,0,.5)}.flip .fb2 .cback{border:3px solid #f2b3c7;border-radius:12px;overflow:hidden}
 .flip .ff{transform:rotateY(180deg);overflow:visible}.flip .ff .tcard{height:100%;width:100%;touch-action:none}
 .flip .ff .tcard,.flip .fb2 .holo{backface-visibility:hidden;-webkit-backface-visibility:hidden}
 .flip:not(.on) .ff .holo,.flip.on .fb2 .holo{transform:none}
@@ -106,17 +107,23 @@
 @keyframes burst{0%{opacity:0;transform:scale(.3)}30%{opacity:1}100%{opacity:.55;transform:scale(1)}}
 .pkact{display:grid;gap:10px;justify-items:center;min-height:44px}.pksum{margin:0;opacity:.85;font-size:.9rem}
 .pkbtn{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
-/* the pile of cards, seen one at a time */
-.pile{position:relative;z-index:1;flex:none;width:min(270px,68vw);aspect-ratio:2/3;touch-action:none;outline:none}
-.sc2{position:absolute;inset:0;cursor:grab;transform:translate(var(--dx,0px),0) rotate(var(--rot,0deg));transition:transform .35s cubic-bezier(.16,1,.3,1),opacity .35s}
+/* the pile: each card lands on top of the one before, which slides back a little; at the end they open into a fan */
+.pile{position:relative;z-index:1;flex:none;width:min(270px,68vw);aspect-ratio:2/3;touch-action:none;outline:none;cursor:pointer;transition:width .5s cubic-bezier(.16,1,.3,1),filter .4s}
+.sc2{position:absolute;inset:0;transform:translate(calc(var(--k,0) * -14px),calc(var(--k,0) * -16px)) rotate(calc(var(--k,0) * -5deg)) scale(calc(1 - var(--k,0) * .05));transition:transform .45s cubic-bezier(.16,1,.3,1)}
+.sc2.in{animation:dealin .6s cubic-bezier(.16,1,.3,1)}
+@keyframes dealin{from{transform:translateY(70vh) rotate(10deg) scale(.8)}}
+.pk.wait .pile{filter:drop-shadow(0 0 34px var(--rc,#ffd0e2))}.pk.wait .pkh{animation:dots .6s ease-in-out infinite alternate}
+@keyframes dots{to{opacity:.35}}
+.pile.fan{width:min(170px,30vw)}
+.pile.fan .sc2{transform:translate(calc(var(--f,0) * 66%),calc(var(--f,0) * var(--f,0) * 5%)) rotate(calc(var(--f,0) * 9deg))}
+.pile.fan .sc2 .cname,.pile.fan .sc2 .ctop,.pile.fan .sc2 .cnew{visibility:visible}.pile.fan .cname{font-size:10px}.pile.fan .ctop b{font-size:1rem}.pile.fan .ctop i{font-size:9px}
 /* the pile slides up out of the pack (which is in front of it) while the pack falls */
 .pile.emerge{animation:emerge .75s .1s cubic-bezier(.16,1,.3,1) backwards}
 @keyframes emerge{from{transform:translateY(42%) scale(.86)}}
 .sobw.tear.out{animation:pkout 1s .35s cubic-bezier(.5,0,.75,0) forwards}
 @keyframes pkout{to{transform:translateY(90vh) rotate(5deg);opacity:0}}
 .sc2:not(.top) .cname,.sc2:not(.top) .ctop,.sc2:not(.top) .cnew{visibility:hidden}
-.sc2.drag{transition:none;cursor:grabbing}.sc2:not(.top){pointer-events:none}
-.sc2.away{transform:translate(calc(var(--dir,1) * 130vw),-40px) rotate(calc(var(--dir,1) * 28deg));opacity:0}
+.sc2:not(.top){pointer-events:none}.pile.fan .sc2{pointer-events:auto}
 .pile .flip{width:100%;height:100%;animation:none;cursor:inherit}
 .pile .ctop b{font-size:1.3rem}.pile .ctop i{font-size:11px}.pile .cname{font-size:13px}
 .sc2.hid .fb2{box-shadow:0 0 18px 4px var(--glow)}
@@ -125,5 +132,5 @@
 @keyframes wob{25%{transform:rotate(-1.5deg) scale(1.02)}75%{transform:rotate(1.5deg) scale(1.02)}}
 @keyframes hidglow{from{box-shadow:0 0 14px 2px var(--glow)}to{box-shadow:0 0 44px 14px var(--glow)}}
 .cnew{position:absolute;left:50%;top:40px;z-index:2;transform:translateX(-50%);font-size:11px;font-weight:800;background:#fff;color:#c23a6e;border-radius:99px;padding:3px 10px;box-shadow:0 4px 12px -4px rgba(120,30,70,.5)}
-@media (prefers-reduced-motion:reduce){.holo{transform:none!important}.holo:not(.act)::before,.sobw,.sobw.tear,.pk .flip,.rays,.tcard.r-l,.cart::before,.cart::after,.sobre .cg i,.pile,.sobw.tear.out,.sc2.hid .flip,.sc2.hid .fb2{animation:none!important}.flip>span{transition:none}}
+@media (prefers-reduced-motion:reduce){.holo{transform:none!important}.holo:not(.act)::before,.sobw,.sobw.tear,.pk .flip,.rays,.tcard.r-l,.cart::before,.cart::after,.sobre .cg i,.pile,.sc2.in,.sobw.tear.out,.sc2.hid .flip,.sc2.hid .fb2{animation:none!important}.flip>span{transition:none}}
 :root[data-theme=dark] .tcard{color:#3d2433}
