@@ -837,3 +837,6 @@ input,textarea,select,[contenteditable]{-webkit-user-select:text;user-select:tex
 .lpdrop summary b{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.lpdrop summary small{color:var(--mut);font-weight:600}
 .lpdrop summary svg{transition:transform .2s;transform:rotate(90deg);color:var(--mut)}.lpdrop[open] summary svg{transform:rotate(-90deg)}
 .lpdrop .lpick{margin:10px 0 6px}
+/* start screen: seals and cards under «Continuar» */
+.lvach{display:grid;gap:10px;margin-top:14px}
+@media (min-width:700px){.lvach{grid-template-columns:1fr 1fr}}
