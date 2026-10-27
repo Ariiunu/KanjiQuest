@@ -15,13 +15,15 @@ const PACK=100,PMAX=14,DUPXP=15; // a pack every 100 points: you have to play to
 const tGet=()=>{try{const o=JSON.parse(localStorage.getItem('ktcg'));if(o&&o.own)return o}catch(e){}return{n:0,own:{}}},tPut=o=>{try{localStorage.setItem('ktcg',JSON.stringify(o))}catch(e){}};
 // points from the seals of every level (this one is in memory; the others are read from storage)
 function totPts(){let n=0;for(const k of ['kkana','kn5','kn4']){let un;if(k===SK)un=S.un;else try{un=(JSON.parse(localStorage.getItem(k)||'{}').un)||{}}catch(e){un={}}for(const s in un||{})n+=PTS[s]||20}return n}
-const packsReady=()=>Math.max(0,Math.floor(totPts()/PACK)-tGet().n);
+// TEMPORARY: gift packs so the cards can be tried before having enough seals. Set it back to 0 (or delete it) to take them away
+const BONUS=10;
+const packsReady=()=>Math.max(0,Math.floor(totPts()/PACK)+BONUS-tGet().n);
 // two commons (new ones first) and one rara or better
 function draw(){const o=tGet(),own=o.own,got=[],pick=L=>L[Math.floor(Math.random()*L.length)];
 for(let i=0;i<2;i++){const L=CARDS.filter(c=>c[3]==='c'&&!got.includes(c)),f=L.filter(c=>!own[c[0]]);got.push(pick(f.length?f:L))}
 // the special slot: rara 85%, épica 13%, legendaria 2%. On the last packs the missing specials come for sure, the rarest last
 const x=Math.random(),k=x<.02?'l':x<.15?'e':'r',miss=CARDS.filter(c=>c[3]!=='c'&&!own[c[0]]),lo=['r','e','l'].find(r=>miss.some(c=>c[3]===r));
-got.push(pick(miss.length&&PMAX-o.n<=miss.length?miss.filter(c=>c[3]===lo):CARDS.filter(c=>c[3]===k)));
+got.push(pick(miss.length&&PMAX+BONUS-o.n<=miss.length?miss.filter(c=>c[3]===lo):CARDS.filter(c=>c[3]===k)));
 const res=got.map(c=>{const dup=!!own[c[0]];own[c[0]]=(own[c[0]]||0)+1;return{c,dup}});o.n++;tPut(o);
 const xp=res.filter(r=>r.dup).length*DUPXP;if(xp){S.xp+=xp;save()}return res}
 const cardArt=c=>`<div class="cart"><span class="cgk" lang="ja">${c[1]}</span><img src="icons/cards/${c[0]}.webp" alt="" loading="lazy" onerror="this.remove()"></div>`;
