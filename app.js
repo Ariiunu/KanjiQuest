@@ -420,7 +420,7 @@ function themeColor(){const dark=document.documentElement.dataset.theme==='dark'
 themeColor();matchMedia('(prefers-color-scheme: dark)').addEventListener('change',themeColor);
 const setH=()=>`<div class="box sets"><b>Ajustes</b><div class="srow2"><span class="mut">Apariencia</span><div class="seg">${[['light','Claro'],['dark','Oscuro']].map(o=>`<button class="${theme()===o[0]?'on':''}" onclick="setTheme('${o[0]}');if(document.getElementById('modal').classList.contains('show'))openSets()">${o[1]}</button>`).join('')}</div></div><div class="srow2"><span class="mut">Sonidos al responder</span><div class="seg">${[[true,'Sí'],[false,'No']].map(o=>`<button class="${S.snd===o[0]?'on':''}" onclick="S.snd=${o[0]};save();render();if(document.getElementById('modal').classList.contains('show'))openSets()">${o[1]}</button>`).join('')}</div></div>${voiceH()}${pushH()}${bakH()}</div>`;
 // Logros: calendar first, then the seals, then settings
-const _ach=achV;achV=function(){return calH()+statsH()+(typeof cardsH==='function'?cardsH():'')+_ach()+`<p class="lajs"><button class="btn" onclick="openSets()">${ic('gear',16,'currentColor','none')} Ajustes y copia de tu progreso</button></p>`};
+const _ach=achV;achV=function(){return (typeof cardsH==='function'?cardsH():'')+calH()+statsH()+_ach()+`<p class="lajs"><button class="btn" onclick="openSets()">${ic('gear',16,'currentColor','none')} Ajustes y copia de tu progreso</button></p>`};
 // --- Juegos: minigames with lives, points and records, using what you've already seen
 S.hs=S.hs||{};
 const mBtn=()=>V.tab==='games'?`<button class="btn" onclick="gMenu()">Juegos</button>`:`<button class="btn" onclick="V.rm='hub';render()">Modos</button>`;
