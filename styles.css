@@ -811,3 +811,12 @@ body{overflow-x:clip}
 .sk{flex:none;width:40px;height:40px;border-radius:12px;display:grid;place-items:center;font-family:"Shippori Mincho",serif;font-weight:800;font-size:1.3rem;color:var(--gold);background:var(--bg)}
 .sct{flex:1;min-width:0;display:grid;gap:3px}.sct b{font-size:1rem}.sct small{font-size:12px;color:var(--mut);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.sct .bar{max-width:220px;margin-top:2px}
 .sgrp .stx{gap:2px}
+
+/* narrow phones: the theme switch also lives in Ajustes, so it leaves the top row to keep it on one line */
+@media (max-width:420px){.hchips button[onclick="toggleTheme()"]{display:none}}
+/* small labels: never under 12px */
+.rtag{font-size:12px}
+/* Juegos on phones: compact cards, with «Jugar» at the bottom right, so more games fit on screen */
+@media (max-width:520px){.ggrid{gap:10px}.gcard{padding:14px 16px;gap:3px;border-radius:20px}.gcard b{font-size:1.1rem}.gcard .gdesc{padding-right:64px}.gcard .gplay{position:absolute;right:14px;bottom:14px;margin:0;padding:6px 16px}.gglyph{font-size:5.5rem;bottom:-16px;right:70px}}
+/* long messages wrap inside the screen instead of running off both sides */
+#toast{white-space:normal;width:max-content;max-width:calc(100vw - 32px);text-align:center;line-height:1.35;border-radius:18px}

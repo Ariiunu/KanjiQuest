@@ -28,7 +28,7 @@
 .cgrid2{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;max-width:520px}
 .cardsh{display:grid;gap:10px;margin-bottom:6px}.cardsh .btn{justify-self:start}.cardsh .ph{display:flex;justify-content:space-between;align-items:baseline}.cardsh .wallet b{font-size:1.2rem}
 .cbrow{display:flex;gap:14px;align-items:center}
-.spts{display:inline-block;margin:2px auto 4px;font-size:.72rem;font-weight:800;color:var(--ind,#c23a6e);background:#fde6ee;border-radius:99px;padding:2px 8px}.spts.ok{background:#e3f6ec;color:#1f9d63}.pbar{height:8px}
+.spts{display:inline-block;margin:2px auto 4px;font-size:12px;font-weight:800;color:#9e2d5a;background:#fde6ee;border-radius:99px;padding:2px 8px}.spts.ok{background:#e3f6ec;color:#17784b}.pbar{height:8px}
 .minipack{position:relative;flex:none;width:66px;aspect-ratio:636/1100;border:0;padding:0;cursor:pointer;background:url(icons/cards/sobre.webp) center/100% 100% no-repeat;filter:drop-shadow(0 8px 10px rgba(120,30,70,.3));--hi:.5}
 .minipack.off{filter:grayscale(.7) opacity(.5);cursor:default}.minipack.off::before,.minipack.off::after{display:none}
 .wallet{margin:2px 0 0;color:var(--mut)}.wallet b{font-family:"Shippori Mincho",serif;font-size:1.6rem;color:var(--ind,#c23a6e)}
