@@ -851,3 +851,8 @@ input,textarea,select,[contenteditable]{-webkit-user-select:text;user-select:tex
 /* writing pad (lessons and the detail sheet) */
 .wbtn{margin:8px auto 4px;display:inline-flex;align-items:center;gap:6px}
 .wpad{text-align:center}.wpad .wpk{font-family:"Shippori Mincho",serif;font-size:1.6rem;color:var(--ind)}.wpad .cv{margin:0 auto;display:block}
+/* letter style of kana and kanji (Ajustes): only what you study changes; seals, cards, section glosses and the logo keep the brush */
+:root[data-jf] :is([lang=ja],.qk,.kp,.fk,.opt):not(.pj,.stamp,.gglyph,.wm2,.cgk,.ctop b,.fpick b,.cback b){font-family:var(--jf)!important}
+:root[data-jf=libro]{--jf:"Klee One","Zen Maru Gothic",serif}
+:root[data-jf=imprenta]{--jf:"Noto Sans JP",system-ui,sans-serif}
+:root[data-jf=redonda]{--jf:"Zen Maru Gothic","Noto Sans JP",sans-serif}

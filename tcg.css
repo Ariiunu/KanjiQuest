@@ -150,19 +150,14 @@
 .cart.h-bolt::before{background:repeating-linear-gradient(60deg,rgba(255,255,255,0) 0 14px,rgba(255,240,170,.7) 16px,rgba(255,255,255,0) 19px 30px),repeating-linear-gradient(-60deg,rgba(255,255,255,0) 0 22px,rgba(255,200,230,.5) 24px,rgba(255,255,255,0) 27px 40px);background-size:auto;background-position:var(--mx,50%) var(--my,50%);mix-blend-mode:overlay;animation:bolt 2.6s steps(1) infinite}
 @keyframes bolt{0%,100%{opacity:.5}48%{opacity:.5}50%{opacity:1}52%{opacity:.6}54%{opacity:1}}
 .cart.h-ribbon::before{background:repeating-linear-gradient(120deg,rgba(255,255,255,0) 0 18px,rgba(255,220,235,.6) 22px,rgba(255,246,214,.55) 26px,rgba(255,255,255,0) 30px 44px);background-size:200% 200%;mix-blend-mode:overlay;animation:sweep 5s ease-in-out infinite}
-/* collections and daily missions */
-.csets{display:grid;gap:10px;max-width:520px}
-.cset{display:flex;align-items:center;justify-content:space-between;gap:10px;background:var(--card);border:1px solid var(--card2);border-radius:16px;padding:10px 12px}
-.cset.ok{border-color:#9edcbc;background:linear-gradient(135deg,var(--card),#eaf8f1)}
-.cst{display:grid;gap:2px;min-width:0}.cst small{color:var(--mut);font-size:12px;display:flex;align-items:center;gap:4px}.cset.ok .cst small{color:#17784b}
-.csth{display:flex;flex:none}.csth span{width:26px;aspect-ratio:2/3;border-radius:5px;background:center/cover #f2a7bf;border:2px solid var(--card);margin-left:-8px;box-shadow:0 2px 6px -2px rgba(120,30,70,.4)}.csth span:first-child{margin-left:0}.csth span.off{filter:grayscale(1) opacity(.35)}
+/* collections (prize per rarity, in the album titles) and daily missions */
+.stag{margin-left:8px;font-family:"Zen Maru Gothic",sans-serif;font-size:12px;font-weight:700;color:var(--mut);display:inline-flex;align-items:center;gap:3px;vertical-align:middle}.stag.ok{color:#17784b}
 .pkset{margin:0;font-weight:800;color:#ffe08a;display:flex;align-items:center;gap:6px;justify-content:center}
 .missb{margin-top:14px}.missb .ph{display:flex;justify-content:space-between;align-items:baseline}.missb .ctitle{margin:0}
 .mis{display:grid;gap:6px;padding:10px 0;border-bottom:1px solid var(--card2)}.mis:last-of-type{border-bottom:0}
 .mis b{display:flex;align-items:center;gap:4px;font-size:.95rem}.mis small{color:var(--mut);font-size:12px}.mis .bar{height:6px}
 .mis.ok b{color:#17784b}.mis.ok .bar i{background:#3bb77e}
-:root[data-theme=dark] .cset.ok{background:var(--card);border-color:#2f7a55}
-/* legendaries: gold. A turning metallic gold frame, gold foil, gold labels and a gold glow */
+:root[data-theme=dark] /* legendaries: gold. A turning metallic gold frame, gold foil, gold labels and a gold glow */
 @property --ga{syntax:'<angle>';inherits:false;initial-value:0deg}
 .tcard.r-l{border-width:5px;background:linear-gradient(var(--card),var(--card)) padding-box,conic-gradient(from var(--ga),#7d500e,#ffe9a6,#c99a2e,#fff7d6,#a8741a,#ffe08a,#7d500e) border-box;animation:aura 2.2s ease-in-out infinite alternate,gspin 5s linear infinite}
 @keyframes gspin{to{--ga:360deg}}
@@ -187,5 +182,6 @@
 @keyframes lreveal{0%{transform:scale(1)}12%{transform:scale(1.2) rotate(-4deg)}24%{transform:scale(1.15) rotate(4deg)}36%{transform:scale(1.12) rotate(-3deg)}50%{transform:scale(1.08) rotate(2deg)}66%{transform:scale(1.04) rotate(-1deg)}100%{transform:scale(1)}}
 .pk.gold .pile{animation:quake .6s .1s ease-in-out}
 @keyframes quake{0%,100%{transform:none}15%{transform:translate(-6px,3px)}30%{transform:translate(6px,-4px)}45%{transform:translate(-5px,2px)}60%{transform:translate(4px,-2px)}80%{transform:translate(-2px,1px)}}
-@media (prefers-reduced-motion:reduce){.holo{transform:none!important}.holo:not(.act)::before,.sobw,.sobw.tear,.pk .flip,.rays,.tcard.r-l,.cart::before,.cart::after,.sc2.hid.cur .flip.r-l,.pk .pile .flip.on.r-l,.pk.gold .pile,.cart.h-spiral::before,.cart.h-cosmos::before,.cart.h-bolt::before,.cart.h-ribbon::before,.cart.h-flame::before,.cart.h-stars::before,.cart.h-glitter::before,.cart.h-ripple::before,.tcard.r-l,.sobre .cg i,.pile,.sc2.in,.sobw.tear.out,.sc2.hid .flip,.sc2.hid .fb2 .cback{animation:none!important}.flip>span{transition:none}}
+.cart.h-sunburst::before{background:repeating-conic-gradient(from var(--ra) at 50% 18%,rgba(255,255,255,0) 0deg 7deg,rgba(255,236,170,.75) 9deg,rgba(255,255,255,0) 12deg 20deg);mix-blend-mode:overlay;animation:spin 20s linear infinite}
+@media (prefers-reduced-motion:reduce){.holo{transform:none!important}.holo:not(.act)::before,.sobw,.sobw.tear,.pk .flip,.rays,.tcard.r-l,.cart::before,.cart::after,.sc2.hid.cur .flip.r-l,.pk .pile .flip.on.r-l,.pk.gold .pile,.cart.h-sunburst::before,.cart.h-spiral::before,.cart.h-cosmos::before,.cart.h-bolt::before,.cart.h-ribbon::before,.cart.h-flame::before,.cart.h-stars::before,.cart.h-glitter::before,.cart.h-ripple::before,.tcard.r-l,.sobre .cg i,.pile,.sc2.in,.sobw.tear.out,.sc2.hid .flip,.sc2.hid .fb2 .cback{animation:none!important}.flip>span{transition:none}}
 :root[data-theme=dark] .tcard{color:#3d2433}
