@@ -23,8 +23,10 @@
 .cback{position:absolute;inset:0;display:grid;place-items:center;background:url(icons/cards/sobre.webp) 50% 46.8%/122% auto no-repeat,#f2a7bf;--hi:.45}
 .cback b{display:grid;place-items:center;width:60%;aspect-ratio:1;font-family:"Shippori Mincho",serif;font-weight:800;font-size:clamp(1.3rem,7vw,2.6rem);color:#8c2a4f;line-height:1}
 .tcard.back{cursor:default;border-color:#f2b3c7}
+/* in the album, a card you do not have yet is a dim silhouette, so the ones you own stand out */
+.cgrid2 .tcard.back{filter:grayscale(.55) opacity(.55);box-shadow:none}
 .cgrid2{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;max-width:520px}
-.cardsh{display:grid;gap:10px;margin-bottom:6px}.cardsh .btn{justify-self:start}
+.cardsh{display:grid;gap:10px;margin-bottom:6px}.cardsh .btn{justify-self:start}.cardsh .ph{display:flex;justify-content:space-between;align-items:baseline}.cardsh .wallet b{font-size:1.2rem}
 .cbrow{display:flex;gap:14px;align-items:center}
 .spts{display:inline-block;margin:2px auto 4px;font-size:.72rem;font-weight:800;color:var(--ind,#c23a6e);background:#fde6ee;border-radius:99px;padding:2px 8px}.spts.ok{background:#e3f6ec;color:#1f9d63}.pbar{height:8px}
 .minipack{position:relative;flex:none;width:66px;aspect-ratio:636/1100;border:0;padding:0;cursor:pointer;background:url(icons/cards/sobre.webp) center/100% 100% no-repeat;filter:drop-shadow(0 8px 10px rgba(120,30,70,.3));--hi:.5}
