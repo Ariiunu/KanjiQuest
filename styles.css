@@ -820,3 +820,20 @@ body{overflow-x:clip}
 @media (max-width:520px){.ggrid{gap:10px}.gcard{padding:14px 16px;gap:3px;border-radius:20px}.gcard b{font-size:1.1rem}.gcard .gdesc{padding-right:64px}.gcard .gplay{position:absolute;right:14px;bottom:14px;margin:0;padding:6px 16px}.gglyph{font-size:5.5rem;bottom:-16px;right:70px}}
 /* long messages wrap inside the screen instead of running off both sides */
 #toast{white-space:normal;width:max-content;max-width:calc(100vw - 32px);text-align:center;line-height:1.35;border-radius:18px}
+/* feels like an app: no pinch or double-tap zoom, no blue selection or menu when a finger rests on something
+   (text fields keep normal selection, and at 16px iPhone does not zoom into them) */
+html{touch-action:manipulation;-webkit-text-size-adjust:100%}
+body{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;-webkit-tap-highlight-color:transparent}
+input,textarea,select,[contenteditable]{-webkit-user-select:text;user-select:text}
+@supports (-webkit-touch-callout:none){input,textarea,select{font-size:max(16px,1em)}}
+/* during a lesson or round on a phone: no big title, and «Siguiente» stays at the bottom of the screen instead of below it */
+@media (max-width:600px){.insess .top{display:none}.insess .sback{margin-top:4px}
+.insess .ovnav{position:sticky;bottom:calc(10px + env(safe-area-inset-bottom,0px));z-index:3;background:linear-gradient(transparent,var(--bg) 40%);padding-top:10px}}
+/* short screens: answer buttons a little lower so the question and its options fit */
+@media (max-height:760px) and (max-width:600px){.insess .opt{padding-top:8px;padding-bottom:8px;margin:6px 0}}
+/* Repaso (kana): «Practicar» folds into one line and opens to choose lessons */
+.lpdrop{background:var(--card);border:1px solid var(--card2);border-radius:16px;padding:10px 14px;margin:0 0 14px}
+.lpdrop summary{list-style:none;display:flex;align-items:center;gap:6px;cursor:pointer;min-height:28px}.lpdrop summary::-webkit-details-marker{display:none}
+.lpdrop summary b{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.lpdrop summary small{color:var(--mut);font-weight:600}
+.lpdrop summary svg{transition:transform .2s;transform:rotate(90deg);color:var(--mut)}.lpdrop[open] summary svg{transform:rotate(-90deg)}
+.lpdrop .lpick{margin:10px 0 6px}
