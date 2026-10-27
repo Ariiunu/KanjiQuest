@@ -183,5 +183,10 @@
 .pk.gold .pile{animation:quake .6s .1s ease-in-out}
 @keyframes quake{0%,100%{transform:none}15%{transform:translate(-6px,3px)}30%{transform:translate(6px,-4px)}45%{transform:translate(-5px,2px)}60%{transform:translate(4px,-2px)}80%{transform:translate(-2px,1px)}}
 .cart.h-sunburst::before{background:repeating-conic-gradient(from var(--ra) at 50% 18%,rgba(255,255,255,0) 0deg 7deg,rgba(255,236,170,.75) 9deg,rgba(255,255,255,0) 12deg 20deg);mix-blend-mode:overlay;animation:spin 20s linear infinite}
+/* the gift message */
+.gift{text-align:center}.gifth{margin:0 0 8px;font-weight:800;color:var(--gold);display:inline-flex;align-items:center;gap:6px}
+.giftp{display:flex;justify-content:center;gap:10px;margin:6px 0 12px}.giftp .minipack{width:58px;animation:giftin .6s calc(var(--i) * .12s) cubic-bezier(.2,1.6,.4,1) backwards}
+@keyframes giftin{from{transform:translateY(30px) scale(.6) rotate(-10deg);opacity:0}}
+.gift h2{margin:0 0 6px;font-family:"Shippori Mincho",serif}.giftm{font-size:1.15rem;font-weight:800;color:var(--ind,#c23a6e);margin:0 0 6px}
 @media (prefers-reduced-motion:reduce){.holo{transform:none!important}.holo:not(.act)::before,.sobw,.sobw.tear,.pk .flip,.rays,.tcard.r-l,.cart::before,.cart::after,.sc2.hid.cur .flip.r-l,.pk .pile .flip.on.r-l,.pk.gold .pile,.cart.h-sunburst::before,.cart.h-spiral::before,.cart.h-cosmos::before,.cart.h-bolt::before,.cart.h-ribbon::before,.cart.h-flame::before,.cart.h-stars::before,.cart.h-glitter::before,.cart.h-ripple::before,.tcard.r-l,.sobre .cg i,.pile,.sc2.in,.sobw.tear.out,.sc2.hid .flip,.sc2.hid .fb2 .cback{animation:none!important}.flip>span{transition:none}}
 :root[data-theme=dark] .tcard{color:#3d2433}

@@ -859,3 +859,15 @@ input,textarea,select,[contenteditable]{-webkit-user-select:text;user-select:tex
 .lpts{display:inline-flex;align-items:center;gap:6px;font-weight:800;color:var(--gold);margin:4px 0 0}
 /* start screen: Ajustes at the top right, next to the logo */
 .lvbrand .lvset{margin-left:auto;display:inline-grid;place-items:center;min-width:44px;min-height:44px;padding:0;cursor:pointer;color:var(--gold)}
+/* grammar: the base, then units that build on each other */
+.gbase{background:var(--card);border:1px solid var(--card2);border-radius:var(--r,20px);padding:12px 16px;margin:0 0 18px}
+.gbase summary{cursor:pointer;font-weight:800;color:var(--ink)}.gbase ul{margin:10px 0 0;padding-left:18px;display:grid;gap:6px}.gbase li{line-height:1.5}
+.gbex{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin:14px 0 4px;font-size:1.35rem}
+.gbex span{padding:6px 10px;border-radius:12px;font-weight:700}.gbex b{font-weight:900}
+.gbex .gt{background:#fde6ee}.gbex .gt b{color:#c23a6e}.gbex .go{background:#e3f1ff}.gbex .go b{color:#2f6db0}.gbex .gv{background:#e3f6ec;color:#17784b}
+.gbtr{text-align:center;color:var(--mut);margin:0 0 6px;font-size:.9rem}
+.gunit{margin:0 0 18px}.guh{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.guh h3{margin:0;display:flex;align-items:center;gap:8px;font-family:"Shippori Mincho",serif;font-size:1.2rem}
+.gun{display:inline-grid;place-items:center;width:26px;height:26px;border-radius:50%;background:var(--btn);color:#fff;font-family:"Zen Maru Gothic",sans-serif;font-size:.85rem}
+.gud{margin:4px 0 10px;font-size:.88rem;line-height:1.5}
+:root[data-theme=dark] .gbex .gt{background:#4a2335}:root[data-theme=dark] .gbex .go{background:#1f3550}:root[data-theme=dark] .gbex .go b{color:#8cc0f5}:root[data-theme=dark] .gbex .gv{background:#173a2a;color:#8fe0b8}

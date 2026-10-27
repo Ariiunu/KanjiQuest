@@ -33,8 +33,11 @@ function totPts(){let n=0;for(const k of ['kkana','kn5','kn4']){let un;if(k===SK
 // matching games, «Estudiar hoy» sessions and study days
 const LESPTS=5,PERFPTS=5; // a finished lesson gives 5; a perfect one (every answer right) 5 more, 10 in all
 function actPts(){let n=0;for(const k of ['kkana','kn5','kn4']){let o;if(k===SK)o=S;else try{o=JSON.parse(localStorage.getItem(k)||'{}')}catch(e){o={}}n+=Math.floor((o.act||0)/20)+Object.keys(o.ls||{}).length*LESPTS+Object.keys(o.lperf||{}).length*PERFPTS+(o.rc||0)*5+[2,4,6].reduce((a,w,d)=>a+((o.gpd||{})[d]||0)*w,0)+(o.dr||0)+(o.mt||0)*2+(o.tdy||0)*5+Object.keys(o.days||{}).length*2}return n}
+// TEMPORARY gift (27 Oct 2026): 3 packs «para Melito por ser wawito», with a message shown once when the app opens.
+// To take it away: delete GIFT, its use in wallet and giftPop (and the giftPop line at the end of the file)
+const GIFT={id:'melito',pts:450,msg:'Para Melito por ser wawito'};
 // points you have to spend, and how many packs they buy
-const wallet=()=>{const o=tGet();return Math.max(0,WELCOME+totPts()+actPts()+(o.sold||0)+(o.bonus||0)-(o.spent||0))};
+const wallet=()=>{const o=tGet();return Math.max(0,WELCOME+GIFT.pts+totPts()+actPts()+(o.sold||0)+(o.bonus||0)-(o.spent||0))};
 const packsReady=()=>Math.max(0,Math.floor(wallet()/PACK));
 // two commons (new ones first) and one rara or better
 function draw(){const o=tGet(),own=o.own,got=[],pick=L=>L[Math.floor(Math.random()*L.length)];
@@ -139,3 +142,7 @@ if(p.i<n-1)pkDeal(p);else pkDone(p)}
 function pkDone(p){if(!p.isConnected)return;p.done=1;const s=p.querySelector('.pile'),L=[...s.querySelectorAll('.sc2')],n=L.length;s.classList.add('fan');s.setAttribute('aria-label','Tus cartas');L.forEach((e,j)=>{e.classList.remove('cur','in');e.style.setProperty('--f',j-(n-1)/2)});pkWhoosh(.45,400,2000,.25);
 const nw=p.res.filter(x=>!x.dup).length,dp=p.res.length-nw,more=packsReady();if((p.res.sets||[]).length)setTimeout(()=>pkMagic('r'),300);p.querySelector('.pkh').textContent=nw?`${nw} ${nw===1?'carta nueva':'cartas nuevas'} para tu álbum`:'Esta vez solo repetidas';p.querySelector('.pkact').innerHTML=`<p class="pksum">${dp?`${dp===1?'1 repetida vendida':dp+' repetidas vendidas'} por ${dp*DUPPTS} puntos · `:''}te quedan ${wallet()} puntos</p>${(p.res.sets||[]).map(([t,pt])=>`<p class="pkset">${ic('trophy',16,'currentColor','none')} ¡Colección completa: ${t}! +${pt} puntos</p>`).join('')}<p class="pksum">Toca una carta para ver su reverso</p><div class="pkbtn">${more?`<button class="btn pri" onclick="openPack()">Comprar otro · ${PACK} puntos</button>`:''}<button class="btn ${more?'':'pri'}" onclick="pkClose();go('cards')">Ver álbum</button><button class="btn" onclick="pkClose()">Listo</button></div>`}
 function pkClose(q){const p=document.getElementById('pk');if(!p)return;p.remove();if(!q)render()}
+// the gift message, once per device
+function giftPop(){let seen;try{seen=localStorage.getItem('kgift_'+GIFT.id)}catch(e){}if(seen||document.getElementById('modal').classList.contains('show'))return;try{localStorage.setItem('kgift_'+GIFT.id,'1')}catch(e){}
+document.getElementById('mbox').innerHTML=`<div class="gift"><p class="gifth">${ic('trophy',18,'currentColor','none')} Regalo especial</p><div class="giftp">${[0,1,2].map(i=>`<span class="minipack holo" style="--i:${i}"></span>`).join('')}</div><h2>¡3 sobres de cartas!</h2><p class="giftm">${GIFT.msg} 💕</p><p class="mut" style="margin:0 0 14px">Ya están en tus puntos: ábrelos en Logros → Cartas.</p><p style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:0"><button class="btn pri" onclick="mClose();setTimeout(openPack,350)">Abrir uno ahora</button><button class="btn" onclick="mClose()">Después</button></p></div>`;document.getElementById('modal').classList.add('show');pkMagic('r')}
+addEventListener('load',()=>setTimeout(giftPop,900));
