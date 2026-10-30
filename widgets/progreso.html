@@ -8,37 +8,42 @@
 <style>
 :root{--pink:#F8C8CE;--pink2:#FBDDE1;--rose:#E98C99;--cream:#FFF8F4;--brown:#8B5049;--brown2:#B07A72}
 *{box-sizing:border-box;margin:0;padding:0}
-html,body{height:100%;background:transparent}
+html,body{height:100%;background:transparent;overflow:hidden}
 body{background:transparent;font-family:'Zen Maru Gothic',sans-serif;color:var(--brown);display:flex;align-items:center;justify-content:center;padding:10px}
-.card{width:100%;max-width:560px;background:var(--pink2);border-radius:22px;padding:24px 20px 16px;position:relative;overflow:hidden;box-shadow:0 3px 0 #f2b3bc}
+.card{transform-origin:center;width:100%;max-width:560px;background:var(--pink2);border-radius:22px;padding:24px 18px 16px;position:relative;overflow:hidden;box-shadow:0 3px 0 #f2b3bc}
 .lace{position:absolute;top:0;left:0;right:0;height:9px;background:radial-gradient(circle at 6px 0,#fff 6px,transparent 6.5px) 0 0/12px 9px repeat-x}
 .star{position:absolute;color:#fff;opacity:.85;font-size:13px}
-h1{font-size:14px;font-weight:700;color:var(--brown2);margin-bottom:10px}
-.item{margin-bottom:12px}
-.top{display:flex;justify-content:space-between;align-items:center;font-weight:900;font-size:15px;margin-bottom:5px}
-.top small{font-weight:500;color:var(--brown2);font-size:12px;margin-left:4px}
-.ctl{display:flex;align-items:center;gap:4px;font-size:13px}
-.ctl button{border:0;background:#fff;color:var(--brown);width:24px;height:24px;border-radius:50%;font-weight:900;cursor:pointer;font-family:inherit}
+.head{display:flex;align-items:baseline;gap:8px;margin-bottom:12px;white-space:nowrap}
+.head b{font-size:16px;font-weight:900}
+.head span{font-size:12px;color:var(--brown2);font-weight:700}
+#list{display:flex;flex-direction:column;gap:10px}
+.item{background:rgba(255,255,255,.55);border-radius:16px;padding:10px 12px 10px}
+.top{display:flex;align-items:baseline;justify-content:space-between;gap:8px;white-space:nowrap;margin-bottom:6px}
+.name b{font-size:16px;font-weight:900}
+.name small{font-size:12px;color:var(--brown2);font-weight:700;margin-left:6px}
+.pct{font-size:13px;font-weight:900;color:var(--rose)}
+.bar{height:10px;background:#fff;border-radius:99px;overflow:hidden}
+.bar i{display:block;height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,#f3a7b3,var(--rose));transition:width .3s}
+.ctl{display:flex;align-items:center;justify-content:flex-end;gap:6px;margin-top:8px;white-space:nowrap;font-size:13px;font-weight:700;color:var(--brown2)}
+.ctl button{border:0;background:#fff;color:var(--brown);width:24px;height:24px;border-radius:50%;font:inherit;font-weight:900;font-size:15px;line-height:1;cursor:pointer;flex:none}
 .ctl button:hover{background:var(--pink)}
-.ctl input{width:48px;border:0;border-radius:8px;background:#fff;color:var(--brown);font:inherit;font-weight:700;text-align:center;padding:2px}
-.bar{height:12px;background:#fff;border-radius:99px;overflow:hidden}
-.bar i{display:block;height:100%;border-radius:99px;background:repeating-linear-gradient(45deg,var(--rose) 0 8px,#ef9fab 8px 16px);transition:width .3s}
-.pct{font-size:11px;color:var(--brown2);text-align:right;margin-top:2px}
-.note{font-size:11px;color:var(--brown2);margin-top:2px}
+.ctl button:focus-visible,.ctl input:focus-visible{outline:2px solid var(--rose);outline-offset:1px}
+.ctl input{width:52px;border:0;border-radius:99px;background:#fff;color:var(--brown);font:inherit;font-weight:900;text-align:center;padding:3px 4px;-moz-appearance:textfield}
+.ctl input::-webkit-outer-spin-button,.ctl input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+.done .pct::after{content:" ♡"}
 </style>
 </head>
 <body>
 <div class="card">
   <div class="lace"></div>
-  <span class="star" style="top:16px;right:22px">★</span>
-  <span class="star" style="bottom:10px;left:20px;font-size:10px">★</span>
-  <h1>N4の進み具合 · mi progreso</h1>
+  <span class="star" style="top:16px;right:18px">★</span>
+  <span class="star" style="bottom:8px;left:16px;font-size:10px">★</span>
+  <div class="head"><b>進み具合</b><span>mi progreso N4</span></div>
   <div id="list"></div>
-  <div class="note">Cambia los números con − / + o escribiéndolos. Las metas son aproximadas.</div>
 </div>
 <script>
-// Metas por defecto (aprox., el JLPT no publica una lista oficial).
-// También se pueden poner en el link: ?kanji=120&vocab=600&gramatica=40
+// Metas aproximadas (el JLPT no publica una lista oficial).
+// Se pueden cambiar en el link: ?metaKanji=300&metaVocab=1500&metaGramatica=130
 var P=new URLSearchParams(location.search);
 var items=[
  {id:'kanji',jp:'漢字',es:'kanji',meta:+P.get('metaKanji')||300},
@@ -51,19 +56,24 @@ var list=document.getElementById('list');
 items.forEach(function(it){
   it.val=load(it.id,+P.get(it.id)||0);
   var el=document.createElement('div');el.className='item';
-  el.innerHTML='<div class="top"><span>'+it.jp+'<small>'+it.es+'</small></span>'+
-   '<span class="ctl"><button data-d="-1">−</button><input type="number" min="0" value="'+it.val+'"> / '+it.meta+' <button data-d="1">+</button></span></div>'+
-   '<div class="bar"><i></i></div><div class="pct"></div>';
+  el.innerHTML='<div class="top"><span class="name"><b>'+it.jp+'</b><small>'+it.es+'</small></span><span class="pct"></span></div>'+
+   '<div class="bar"><i></i></div>'+
+   '<div class="ctl"><button data-d="-1" aria-label="restar">−</button><input id="in-'+it.id+'" type="number" min="0" inputmode="numeric" aria-label="'+it.es+'"><span>/ '+it.meta+'</span><button data-d="1" aria-label="sumar">+</button></div>';
   list.appendChild(el);
   var inp=el.querySelector('input'),bar=el.querySelector('i'),pct=el.querySelector('.pct');
+  inp.value=it.val;
   function upd(){
     it.val=Math.max(0,Math.round(+inp.value||0));inp.value=it.val;save(it.id,it.val);
     var p=Math.min(100,it.val/it.meta*100);bar.style.width=p+'%';
-    pct.textContent=Math.round(p)+'%'+(p>=100?' · よくできました！':'');
+    pct.textContent=Math.round(p)+'%';el.classList.toggle('done',p>=100);
   }
   el.querySelectorAll('button').forEach(function(b){b.onclick=function(){inp.value=(+inp.value||0)+(+b.dataset.d);upd()}});
   inp.onchange=upd;upd();
 });
+</script>
+<script>
+// Ajusta la tarjeta al alto del recuadro de Notion (sin cortes ni scroll)
+(function(){var c=document.querySelector(".card");function fit(){c.style.transform="";var s=Math.min(1,(innerHeight-16)/c.offsetHeight,(innerWidth-16)/c.offsetWidth);if(s<1)c.style.transform="scale("+s+")";}addEventListener("resize",fit);fit();if(document.fonts)document.fonts.ready.then(fit);})();
 </script>
 </body>
 </html>

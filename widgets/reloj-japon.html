@@ -8,9 +8,9 @@
 <style>
 :root{--pink:#F8C8CE;--pink2:#FBDDE1;--rose:#E98C99;--cream:#FFF8F4;--brown:#8B5049;--brown2:#B07A72}
 *{box-sizing:border-box;margin:0;padding:0}
-html,body{height:100%;background:transparent}
+html,body{height:100%;background:transparent;overflow:hidden}
 body{background:transparent;font-family:'Zen Maru Gothic',sans-serif;color:var(--brown);display:flex;align-items:center;justify-content:center;padding:10px}
-.card{width:100%;max-width:560px;background:var(--pink2);border-radius:22px;padding:24px 20px 18px;position:relative;overflow:hidden;box-shadow:0 3px 0 #f2b3bc;display:flex;gap:12px}
+.card{transform-origin:center;width:100%;max-width:560px;background:var(--pink2);border-radius:22px;padding:24px 20px 18px;position:relative;overflow:hidden;box-shadow:0 3px 0 #f2b3bc;display:flex;gap:12px}
 .lace{position:absolute;top:0;left:0;right:0;height:9px;background:radial-gradient(circle at 6px 0,#fff 6px,transparent 6.5px) 0 0/12px 9px repeat-x}
 .star{position:absolute;color:#fff;opacity:.85;font-size:13px}
 .box{flex:1;background:rgba(255,255,255,.55);border-radius:16px;padding:12px 14px;text-align:center}
@@ -64,6 +64,10 @@ function tick(){
   dc.textContent=DIAS[c.wd]+' '+c.d+'/'+c.m;
 }
 tick();setInterval(tick,10000);
+</script>
+<script>
+// Ajusta la tarjeta al alto del recuadro de Notion (sin cortes ni scroll)
+(function(){var c=document.querySelector(".card");function fit(){c.style.transform="";var s=Math.min(1,(innerHeight-16)/c.offsetHeight,(innerWidth-16)/c.offsetWidth);if(s<1)c.style.transform="scale("+s+")";}addEventListener("resize",fit);fit();if(document.fonts)document.fonts.ready.then(fit);})();
 </script>
 </body>
 </html>

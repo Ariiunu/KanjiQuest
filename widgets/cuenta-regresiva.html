@@ -8,9 +8,9 @@
 <style>
 :root{--pink:#F8C8CE;--pink2:#FBDDE1;--rose:#E98C99;--cream:#FFF8F4;--brown:#8B5049;--brown2:#B07A72}
 *{box-sizing:border-box;margin:0;padding:0}
-html,body{height:100%;background:transparent}
+html,body{height:100%;background:transparent;overflow:hidden}
 body{background:transparent;font-family:'Zen Maru Gothic',sans-serif;color:var(--brown);display:flex;align-items:center;justify-content:center;padding:10px}
-.card{width:100%;max-width:560px;background:var(--pink2);border-radius:22px;padding:24px 22px 18px;position:relative;overflow:hidden;box-shadow:0 3px 0 #f2b3bc;display:flex;align-items:center;gap:18px}
+.card{transform-origin:center;width:100%;max-width:560px;background:var(--pink2);border-radius:22px;padding:24px 22px 18px;position:relative;overflow:hidden;box-shadow:0 3px 0 #f2b3bc;display:flex;align-items:center;gap:18px}
 .lace{position:absolute;top:0;left:0;right:0;height:9px;background:radial-gradient(circle at 6px 0,#fff 6px,transparent 6.5px) 0 0/12px 9px repeat-x}
 .star{position:absolute;color:#fff;opacity:.85;font-size:14px}
 .bunny{width:120px;height:auto;flex:none;margin:-6px -4px -10px -8px}
@@ -82,6 +82,10 @@ if(dias>0){
 var tot=(meta-ini)/864e5, pas=(hoy-ini)/864e5;
 var pct=Math.max(0,Math.min(100,tot>0?pas/tot*100:100));
 document.getElementById('fill').style.width=pct+'%';
+</script>
+<script>
+// Ajusta la tarjeta al alto del recuadro de Notion (sin cortes ni scroll)
+(function(){var c=document.querySelector(".card");function fit(){c.style.transform="";var s=Math.min(1,(innerHeight-16)/c.offsetHeight,(innerWidth-16)/c.offsetWidth);if(s<1)c.style.transform="scale("+s+")";}addEventListener("resize",fit);fit();if(document.fonts)document.fonts.ready.then(fit);})();
 </script>
 </body>
 </html>
