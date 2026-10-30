@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Kanji del día</title>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700;900&family=Klee+One:wght@600&display=swap" rel="stylesheet">
+<style>
+:root{--pink:#F8C8CE;--pink2:#FBDDE1;--rose:#E98C99;--cream:#FFF8F4;--brown:#8B5049;--brown2:#B07A72}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{background:var(--cream);font-family:'Zen Maru Gothic',sans-serif;color:var(--brown);display:flex;align-items:center;justify-content:center;padding:10px}
+.card{width:100%;max-width:560px;background:var(--pink2);border-radius:22px;padding:24px 20px 16px;position:relative;overflow:hidden;box-shadow:0 3px 0 #f2b3bc}
+.lace{position:absolute;top:0;left:0;right:0;height:9px;background:radial-gradient(circle at 6px 0,#fff 6px,transparent 6.5px) 0 0/12px 9px repeat-x}
+.star{position:absolute;color:#fff;opacity:.85;font-size:13px}
+.head{display:flex;justify-content:space-between;align-items:center;font-size:13px;font-weight:700;color:var(--brown2);margin-bottom:10px}
+.nav button{border:0;background:#fff;color:var(--brown);width:26px;height:26px;border-radius:50%;font-weight:900;cursor:pointer;font-family:inherit}
+.nav button:hover{background:var(--pink)}
+.row{display:flex;gap:18px;align-items:center}
+.k{flex:none;width:110px;height:110px;background:var(--cream);border-radius:18px;display:flex;align-items:center;justify-content:center;font-family:'Klee One',serif;font-size:76px;box-shadow:inset 0 0 0 2px #fff, 0 2px 0 #f2b3bc;
+ background-image:linear-gradient(#f3d3d6 1px,transparent 1px),linear-gradient(90deg,#f3d3d6 1px,transparent 1px);background-size:55px 55px;background-position:-1px -1px}
+.d{flex:1;min-width:0}
+.mean{font-size:20px;font-weight:900;margin-bottom:6px}
+.r{font-size:14px;margin:3px 0}
+.r b{display:inline-block;min-width:44px;font-size:11px;background:#fff;border-radius:99px;text-align:center;padding:1px 6px;margin-right:6px;color:var(--brown2)}
+.ex{margin-top:8px;font-size:14px;background:rgba(255,255,255,.6);border-radius:12px;padding:6px 10px}
+.ex .jp{font-weight:900}
+@media(max-width:380px){.k{width:84px;height:84px;font-size:56px;background-size:42px 42px}.mean{font-size:17px}}
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="lace"></div>
+  <span class="star" style="top:18px;right:84px">★</span>
+  <span class="star" style="bottom:12px;right:18px;font-size:10px">★</span>
+  <div class="head"><span>今日の漢字 · kanji del día</span>
+    <span class="nav"><button id="prev" aria-label="anterior">‹</button> <button id="next" aria-label="siguiente">›</button></span></div>
+  <div class="row">
+    <div class="k" id="k"></div>
+    <div class="d">
+      <div class="mean" id="mean"></div>
+      <div class="r"><b>音</b><span id="on"></span></div>
+      <div class="r"><b>訓</b><span id="kun"></span></div>
+      <div class="ex"><span class="jp" id="exj"></span> <span id="exr"></span> — <span id="exs"></span></div>
+    </div>
+  </div>
+</div>
+<script>
+// [kanji, on'yomi, kun'yomi, significado, ejemplo, lectura, significado del ejemplo]
+var L=[
+['悪','アク','わる(い)','malo','悪い','わるい','malo'],
+['暗','アン','くら(い)','oscuro','暗い','くらい','oscuro'],
+['医','イ','—','medicina','医者','いしゃ','médico'],
+['運','ウン','はこ(ぶ)','llevar · suerte','運動','うんどう','ejercicio'],
+['映','エイ','うつ(る)','reflejar','映画','えいが','película'],
+['遠','エン','とお(い)','lejos','遠い','とおい','lejano'],
+['歌','カ','うた・うた(う)','canción','歌う','うたう','cantar'],
+['夏','カ','なつ','verano','夏休み','なつやすみ','vacaciones de verano'],
+['開','カイ','あ(く)・ひら(く)','abrir','開ける','あける','abrir (algo)'],
+['楽','ガク・ラク','たの(しい)','disfrutar · música','楽しい','たのしい','divertido'],
+['寒','カン','さむ(い)','frío','寒い','さむい','hace frío'],
+['顔','ガン','かお','cara','顔','かお','cara'],
+['帰','キ','かえ(る)','volver','帰る','かえる','volver a casa'],
+['起','キ','お(きる)','levantarse','起きる','おきる','despertarse'],
+['急','キュウ','いそ(ぐ)','prisa','急ぐ','いそぐ','apurarse'],
+['強','キョウ','つよ(い)','fuerte','勉強','べんきょう','estudio'],
+['近','キン','ちか(い)','cerca','近い','ちかい','cercano'],
+['軽','ケイ','かる(い)','liviano','軽い','かるい','liviano'],
+['犬','ケン','いぬ','perro','子犬','こいぬ','cachorro'],
+['考','コウ','かんが(える)','pensar','考える','かんがえる','pensar'],
+['好','コウ','す(き)','gustar','好き','すき','que gusta'],
+['黒','コク','くろ','negro','黒い','くろい','negro'],
+['思','シ','おも(う)','pensar · sentir','思う','おもう','creer, pensar'],
+['始','シ','はじ(める)','empezar','始める','はじめる','empezar (algo)'],
+['私','シ','わたし','yo · privado','私','わたし','yo'],
+['写','シャ','うつ(す)','copiar','写真','しゃしん','foto'],
+['借','シャク','か(りる)','pedir prestado','借りる','かりる','pedir prestado'],
+['習','シュウ','なら(う)','aprender','習う','ならう','aprender (con alguien)'],
+['終','シュウ','お(わる)','terminar','終わる','おわる','terminar'],
+['秋','シュウ','あき','otoño','秋','あき','otoño'],
+['春','シュン','はる','primavera','春','はる','primavera'],
+['乗','ジョウ','の(る)','subirse','乗る','のる','subirse (a un vehículo)'],
+['色','ショク・シキ','いろ','color','色','いろ','color'],
+['森','シン','もり','bosque','森','もり','bosque'],
+['親','シン','おや','padres · cercano','親切','しんせつ','amable'],
+['赤','セキ','あか','rojo','赤い','あかい','rojo'],
+['送','ソウ','おく(る)','enviar','送る','おくる','enviar'],
+['待','タイ','ま(つ)','esperar','待つ','まつ','esperar'],
+['貸','タイ','か(す)','prestar','貸す','かす','prestar'],
+['茶','チャ・サ','—','té','お茶','おちゃ','té'],
+['朝','チョウ','あさ','mañana','朝ご飯','あさごはん','desayuno'],
+['鳥','チョウ','とり','pájaro','小鳥','ことり','pajarito'],
+['冬','トウ','ふゆ','invierno','冬','ふゆ','invierno'],
+['働','ドウ','はたら(く)','trabajar','働く','はたらく','trabajar'],
+['肉','ニク','—','carne','牛肉','ぎゅうにく','carne de vacuno'],
+['飯','ハン','めし','arroz cocido · comida','ご飯','ごはん','arroz, comida'],
+['服','フク','—','ropa','洋服','ようふく','ropa occidental'],
+['勉','ベン','—','esforzarse','勉強','べんきょう','estudio'],
+['歩','ホ','ある(く)','caminar','歩く','あるく','caminar'],
+['妹','マイ','いもうと','hermana menor','妹','いもうと','mi hermana menor'],
+['味','ミ','あじ','sabor','意味','いみ','significado'],
+['夜','ヤ','よる','noche','夜','よる','noche'],
+['薬','ヤク','くすり','medicamento','薬','くすり','remedio'],
+['旅','リョ','たび','viaje','旅行','りょこう','viaje'],
+['料','リョウ','—','tarifa · materiales','料理','りょうり','cocina, comida']
+];
+var hoy=new Date();var base=Math.floor(new Date(hoy.getFullYear(),hoy.getMonth(),hoy.getDate())/864e5);
+var off=0;
+function show(){
+  var i=((base+off)%L.length+L.length)%L.length, x=L[i];
+  k.textContent=x[0];mean.textContent=x[3];on.textContent=x[1];kun.textContent=x[2];
+  exj.textContent=x[4];exr.textContent='('+x[5]+')';exs.textContent=x[6];
+}
+prev.onclick=function(){off--;show()};next.onclick=function(){off++;show()};
+show();
+</script>
+</body>
+</html>

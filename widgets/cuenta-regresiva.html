@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Cuenta JLPT</title>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{--pink:#F8C8CE;--pink2:#FBDDE1;--rose:#E98C99;--cream:#FFF8F4;--brown:#8B5049;--brown2:#B07A72}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{background:var(--cream);font-family:'Zen Maru Gothic',sans-serif;color:var(--brown);display:flex;align-items:center;justify-content:center;padding:10px}
+.card{width:100%;max-width:560px;background:var(--pink2);border-radius:22px;padding:24px 22px 18px;position:relative;overflow:hidden;box-shadow:0 3px 0 #f2b3bc;display:flex;align-items:center;gap:18px}
+.lace{position:absolute;top:0;left:0;right:0;height:9px;background:radial-gradient(circle at 6px 0,#fff 6px,transparent 6.5px) 0 0/12px 9px repeat-x}
+.star{position:absolute;color:#fff;opacity:.85;font-size:14px}
+.bunny{width:92px;flex:none}
+.info{flex:1;min-width:0}
+.small{font-size:13px;color:var(--brown2);font-weight:700;letter-spacing:.04em}
+.big{display:flex;align-items:baseline;gap:6px;margin:2px 0 4px}
+.big .n{font-size:58px;font-weight:900;line-height:1}
+.big .u{font-size:22px;font-weight:900}
+.es{font-size:14px;font-weight:700}
+.bar{height:10px;background:#fff;border-radius:99px;margin:10px 0 8px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--rose);border-radius:99px}
+.phrase{font-size:13px;font-weight:700}
+.phrase span{color:var(--brown2);font-weight:500}
+@media(max-width:380px){.bunny{width:64px}.big .n{font-size:44px}}
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="lace"></div>
+  <span class="star" style="top:16px;right:22px">★</span>
+  <span class="star" style="bottom:14px;right:60px;font-size:10px">★</span>
+  <span class="star" style="top:40px;left:118px;font-size:9px">★</span>
+  <svg class="bunny" viewBox="0 0 100 100" aria-hidden="true">
+    <g fill="#FFF7F2" stroke="#E7B9B4" stroke-width="2">
+      <ellipse cx="34" cy="30" rx="10" ry="24" transform="rotate(-14 34 30)"/>
+      <ellipse cx="66" cy="30" rx="10" ry="24" transform="rotate(14 66 30)"/>
+      <ellipse cx="50" cy="64" rx="33" ry="28"/>
+    </g>
+    <ellipse cx="34" cy="31" rx="4.5" ry="16" fill="#F8C8CE" transform="rotate(-14 34 31)"/>
+    <ellipse cx="66" cy="31" rx="4.5" ry="16" fill="#F8C8CE" transform="rotate(14 66 31)"/>
+    <path d="M70 12 l10 -6 l-2 11 z M70 12 l-4 -10 l9 3 z" fill="#E98C99"/>
+    <circle cx="70" cy="12" r="2.6" fill="#D9707F"/>
+    <circle cx="40" cy="62" r="3.4" fill="#6B3E39"/><circle cx="60" cy="62" r="3.4" fill="#6B3E39"/>
+    <circle cx="41.2" cy="60.8" r="1" fill="#fff"/><circle cx="61.2" cy="60.8" r="1" fill="#fff"/>
+    <ellipse cx="31" cy="71" rx="6" ry="3.5" fill="#F7A9B4" opacity=".75"/>
+    <ellipse cx="69" cy="71" rx="6" ry="3.5" fill="#F7A9B4" opacity=".75"/>
+    <path d="M46 69 q2 3 4 0 q2 3 4 0" stroke="#6B3E39" fill="none" stroke-width="1.8" stroke-linecap="round"/>
+  </svg>
+  <div class="info">
+    <div class="small" id="label">JLPT N4まで あと</div>
+    <div class="big"><span class="n" id="days">–</span><span class="u">日</span></div>
+    <div class="es" id="es"></div>
+    <div class="bar"><i id="fill" style="width:0"></i></div>
+    <div class="phrase" id="phrase"></div>
+  </div>
+</div>
+<script>
+// Cambia la fecha con ?fecha=2026-12-06 y el nivel con ?nivel=N4 en el link
+var p=new URLSearchParams(location.search);
+var fecha=p.get('fecha')||'2026-12-06';
+var inicio=p.get('inicio')||'2026-07-06'; // desde cuándo cuenta la barra
+var nivel=p.get('nivel')||'N4';
+function d(s){var a=s.split('-');return new Date(+a[0],a[1]-1,+a[2]);}
+var hoy=new Date();hoy=new Date(hoy.getFullYear(),hoy.getMonth(),hoy.getDate());
+var meta=d(fecha),ini=d(inicio);
+var dias=Math.round((meta-hoy)/864e5);
+var meses=['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
+var dsem=['dom','lun','mar','mié','jue','vie','sáb'];
+var cuando=dsem[meta.getDay()]+' '+meta.getDate()+' '+meses[meta.getMonth()]+' '+meta.getFullYear();
+var frases=[
+ ['頑張って！','¡ánimo!'],
+ ['一歩ずつ','paso a paso'],
+ ['継続は力なり','la constancia es poder'],
+ ['今日もよくできました','hoy también lo hiciste muy bien'],
+ ['毎日少しずつ','un poquito cada día']
+];
+var f=frases[Math.floor(hoy/864e5)%frases.length];
+document.getElementById('phrase').innerHTML=f[0]+' <span>— '+f[1]+'</span>';
+if(dias>0){
+  document.getElementById('label').textContent='JLPT '+nivel+'まで あと';
+  document.getElementById('days').textContent=dias;
+  document.getElementById('es').textContent=(dias===1?'falta 1 día':'faltan '+dias+' días')+' · '+cuando;
+}else if(dias===0){
+  document.getElementById('label').textContent='JLPT '+nivel;
+  document.getElementById('days').textContent='今日';
+  document.querySelector('.u').textContent='';
+  document.getElementById('es').textContent='¡es hoy! mucha suerte 🍀';
+}else{
+  document.getElementById('label').textContent='JLPT '+nivel;
+  document.getElementById('days').textContent='お疲れさま';
+  document.getElementById('days').style.fontSize='34px';
+  document.querySelector('.u').textContent='';
+  document.getElementById('es').textContent='¡ya diste el examen! buen trabajo';
+}
+var tot=(meta-ini)/864e5, pas=(hoy-ini)/864e5;
+var pct=Math.max(0,Math.min(100,tot>0?pas/tot*100:100));
+document.getElementById('fill').style.width=pct+'%';
+</script>
+</body>
+</html>
