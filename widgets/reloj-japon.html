@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Reloj Japón</title>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{--pink:#F8C8CE;--pink2:#FBDDE1;--rose:#E98C99;--cream:#FFF8F4;--brown:#8B5049;--brown2:#B07A72}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{background:var(--cream);font-family:'Zen Maru Gothic',sans-serif;color:var(--brown);display:flex;align-items:center;justify-content:center;padding:10px}
+.card{width:100%;max-width:560px;background:var(--pink2);border-radius:22px;padding:24px 20px 18px;position:relative;overflow:hidden;box-shadow:0 3px 0 #f2b3bc;display:flex;gap:12px}
+.lace{position:absolute;top:0;left:0;right:0;height:9px;background:radial-gradient(circle at 6px 0,#fff 6px,transparent 6.5px) 0 0/12px 9px repeat-x}
+.star{position:absolute;color:#fff;opacity:.85;font-size:13px}
+.box{flex:1;background:rgba(255,255,255,.55);border-radius:16px;padding:12px 14px;text-align:center}
+.box.jp{background:var(--cream);box-shadow:0 2px 0 #f2b3bc}
+.city{font-size:13px;font-weight:700;color:var(--brown2)}
+.t{font-size:40px;font-weight:900;line-height:1.15;font-variant-numeric:tabular-nums}
+.box:not(.jp) .t{font-size:28px;margin-top:6px}
+.date{font-size:15px;font-weight:700}
+.mood{font-size:12px;color:var(--brown2);margin-top:2px}
+@media(max-width:380px){.card{flex-direction:column}}
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="lace"></div>
+  <span class="star" style="top:16px;right:20px">★</span>
+  <span class="star" style="bottom:10px;left:46%;font-size:10px">★</span>
+  <div class="box jp">
+    <div class="city">🌸 東京 · Tokio</div>
+    <div class="t" id="tj">--:--</div>
+    <div class="date" id="dj"></div>
+    <div class="mood" id="mj"></div>
+  </div>
+  <div class="box">
+    <div class="city">🏔️ サンティアゴ · Santiago</div>
+    <div class="t" id="tc">--:--</div>
+    <div class="mood" id="dc"></div>
+  </div>
+</div>
+<script>
+var YOUBI=['日','月','火','水','木','金','土'];
+var DIAS=['domingo','lunes','martes','miércoles','jueves','viernes','sábado'];
+function parts(tz){
+  var f=new Intl.DateTimeFormat('en-US',{timeZone:tz,year:'numeric',month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit',hour12:false,weekday:'short'});
+  var o={};f.formatToParts(new Date()).forEach(function(p){o[p.type]=p.value});
+  var wd=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'].indexOf(o.weekday);
+  var h=+o.hour%24;
+  return{y:o.year,m:o.month,d:o.day,h:h,min:o.minute,wd:wd};
+}
+function saludo(h){
+  if(h>=5&&h<11)return 'おはよう — buenos días';
+  if(h>=11&&h<18)return 'こんにちは — buenas tardes';
+  return 'こんばんは — buenas noches';
+}
+function tick(){
+  var j=parts('Asia/Tokyo'),c=parts('America/Santiago');
+  tj.textContent=String(j.h).padStart(2,'0')+':'+j.min;
+  dj.textContent=j.m+'月'+j.d+'日（'+YOUBI[j.wd]+'）';
+  mj.textContent=saludo(j.h);
+  tc.textContent=String(c.h).padStart(2,'0')+':'+c.min;
+  dc.textContent=DIAS[c.wd]+' '+c.d+'/'+c.m;
+}
+tick();setInterval(tick,10000);
+</script>
+</body>
+</html>
